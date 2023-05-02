@@ -23,7 +23,9 @@ export default function HomePage() {
   };
 
   const handleColorChange = (selectedOption) => {
-    setBackgroundColor(selectedOption.value);
+    const color = selectedOption.value;
+    setBackgroundColor(color);
+    localStorage.setItem("backgroundColor", color);
   };
 
   const colorOptions = [
@@ -33,6 +35,13 @@ export default function HomePage() {
     { value: "#B1CBD2", label: "Light Grey" },
     { value: "#F4C095", label: "Peach" },
   ];
+
+  useEffect(() => {
+    const savedColor = localStorage.getItem("backgroundColor");
+    if (savedColor) {
+      setBackgroundColor(savedColor);
+    }
+  }, []);
   
 
   return (
