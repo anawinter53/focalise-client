@@ -1,15 +1,11 @@
-import './App.css'
+import * as Pages from './pages'
 import {Routes, Route} from 'react-router-dom'
 
 function App() {
   return (
-    <>
     <Routes>
-      <Route>
-        
-      </Route>
+          <Route path="/" element={<Pages.HomePage />}/>
     </Routes>
-    </>
   )
 }
 
