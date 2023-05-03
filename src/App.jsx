@@ -14,6 +14,7 @@ function App() {
             <Route path="/profile" element={<Pages.ProfilePage />}/>
             <Route path='/register' element={<Pages.RegisterPage />}/>
             <Route path='/login' element={<Pages.LoginPage />}/>
+            <Route path='/logout' element={<Pages.LogoutPage />}/>
         </Route>
       </Routes>
     </UserProvider>

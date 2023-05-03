@@ -1,19 +1,55 @@
 import "./ProfilePage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageSelector from "../../components/ImageSelector";
+import ColourChanger from "../../components/ColourChanger";
+import FontColourChanger from "../../components/FontColorChanger";
+import FontResize from "../../components/FontResize";
 
 export default function ProfilePage() {
   const [selectedImage, setSelectedImage] = useState(
     localStorage.getItem("profileImage") || null
   );
+  const [backgroundColor, setBackgroundColor] = useState('');
+  const [fontColor, setFontColor] = useState('')
+  const [fontSize, setFontSize] = useState('')
 
   const handleImageSelect = (image) => {
     setSelectedImage(image);
     localStorage.setItem("profileImage", image);
   };
 
+  useEffect(() => {
+    const savedColor = localStorage.getItem("backgroundColor");
+    const savedFontColor = localStorage.getItem('fontColor')
+    const savedFontSize = localStorage.getItem('fontSize')
+    if (savedColor) {
+      setBackgroundColor(savedColor);
+    }
+    if (savedFontColor) {
+      handleFontColorChange(savedFontColor)
+    }
+    if (savedFontSize) {
+      handleFontResize(Number(savedFontSize))
+    }
+  }, []);
+
+  const handleBackgroundColorChange = (color) => {
+    setBackgroundColor(color);
+    localStorage.setItem("backgroundColor", color);
+  }
+
+  const handleFontColorChange = (color) => {
+    setFontColor(color)
+    localStorage.setItem('fontColor', color)
+  }
+
+  const handleFontResize = (size) => {
+    setFontSize(size)
+    localStorage.setItem('fontSize', size)
+  }
+
   return (
-    <div className="profile-page-body">
+    <div className="profile-page-body" style={{backgroundColor, color: fontColor, fontSize}}>
       <h1 className="text-center mt-5">Profile</h1>
       <div className="container">
         <div className="row">
@@ -44,7 +80,12 @@ export default function ProfilePage() {
             <p className="bio">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
           </div>
           <div className="col-md-6">
-            <p>Test</p>
+            <label>Choose background colour</label>
+          <ColourChanger onColorChange={handleBackgroundColorChange}/>
+          <label>Choose a font colour</label>
+          <FontColourChanger onFontChange={handleFontColorChange}/>
+          <label>Choose your font size</label>
+          <FontResize onFontResize={handleFontResize}/>
             <p>Test</p>
             <p>Test</p>
           </div>

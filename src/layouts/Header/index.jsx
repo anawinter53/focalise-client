@@ -53,6 +53,35 @@ export default function Header() {
                   <li><a className="dropdown-item" href="#">Another action</a></li>
                 </ul> */}
               </li>
+
+              <li className="nav-item">
+                <a className="nav-link" href="/profile">Profile</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/register">Register</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/login">Login</a>
+              </li>
+              {/* If the user is loggen in (localStorage token exists), it shows Profile and Logout, otherwise register and login. Can remove the 3 items above once login is working*/}
+              {localStorage.token ? 
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/Profile">Profile</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/logout">Logout</a>
+                </li>
+              </> : 
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/register">Register</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/login">Login</a>
+                </li>
+              </>}
+
             </ul>
             
           </div>
