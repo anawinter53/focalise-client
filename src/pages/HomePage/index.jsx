@@ -5,7 +5,7 @@ import Select from "react-select";
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
   const [isAccordion1Open, setIsAccordion1Open] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const [setBackgroundColor] = useState('');
 
 
   useEffect(() => {
