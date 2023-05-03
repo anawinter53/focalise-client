@@ -63,7 +63,7 @@ export default function HomePage() {
               </div>
             )}
           </div>
-    <Select className="colour-dropdown" options={colorOptions} onChange={handleColorChange} />
+    <Select className="colour-dropdown" options={colorOptions} onChange={handleColorChange}/>
     </div>
     </div>
     <section>
