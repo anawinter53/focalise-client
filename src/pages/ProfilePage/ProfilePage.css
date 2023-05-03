@@ -64,3 +64,26 @@ section .air{
     width: 100vw;
     color: white;
   }
+
+  .profile-image-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profileName {
+    margin-top: 50px;
+  }
+
+  .extraInfo {
+    margin-top: 10px;
+  }
+
+  .profile-image {
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    max-width: 200px;
+    max-height: 200px;
+  }
