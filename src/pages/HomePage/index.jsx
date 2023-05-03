@@ -5,7 +5,7 @@ import Select from "react-select";
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
   const [isAccordion1Open, setIsAccordion1Open] = useState(false);
-  const [setBackgroundColor] = useState('');
+  const [ backgroundColor,setBackgroundColor] = useState('');
 
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function HomePage() {
   
 
   return (
-    <div className="bg-info text-center">
+    <div className='homepage-body' style={{backgroundColor}}>
       <h1 className='greeting'>Good afternoon user, the time now is: </h1>
       <h2 className='timeDisplay'>{date.toLocaleTimeString()}</h2>
       <div className="accordion-container">
@@ -63,7 +63,7 @@ export default function HomePage() {
               </div>
             )}
           </div>
-    <Select className="colour-dropdown" options={colorOptions} onChange={handleColorChange} />
+    <Select className="colour-dropdown" options={colorOptions} onChange={handleColorChange}/>
     </div>
     </div>
     <section>

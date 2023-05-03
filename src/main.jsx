@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { ThemeProvider } from './contexts/themes'
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
         <ThemeProvider>
