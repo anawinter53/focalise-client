@@ -18,6 +18,9 @@ export default function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="/sensory">Sensory</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/profile">Profile</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -25,10 +28,5 @@ export default function Header() {
 
     <Outlet/>
     </>
-    // <div style={{minWidth: '10vh', backgroundColor: 'black'}}>
-    //   <nav>
-    //     <Link to="/home">Home</Link>
-    //   </nav>
-    // </div>
   )
 }
