@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "author": "I am the Walrus",
     "action": {
-        "default_popup": "/Login/index.jsx",
+        "default_popup": "index.html",
         "default_title":  "FOCALISE"
     },
     "icons": {
