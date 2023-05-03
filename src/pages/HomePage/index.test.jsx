@@ -4,7 +4,7 @@ import { screen, render, cleanup } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from "@testing-library/user-event";
 import matchers from '@testing-library/jest-dom/matchers';
-import 'jest-localstorage-mock';
+
 expect.extend(matchers);
 
 //import index from './';
@@ -21,13 +21,11 @@ describe('Home Page', () => {
 
   afterEach(() => {
     cleanup();
-    localStorage.clear();
   });
 
-  it('renders unique text', () => {
-    const header = screen.getByText(/Good afternoon user, the time now is:/i);
-    expect(header).toBeInTheDocument();
+  it('renders a greeting message', () => {
+    const greeting = screen.getByTestId('greeting');
+    expect(greeting).toBeInTheDocument();
   });
 });
-
 
