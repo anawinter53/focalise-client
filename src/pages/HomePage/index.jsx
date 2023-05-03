@@ -45,7 +45,7 @@ export default function HomePage() {
   
 
   return (
-    <div className="bg-info text-center">
+    <div className='homepage-body' style={{backgroundColor}}>
       <h1 className='greeting'>Good afternoon user, the time now is: </h1>
       <h2 className='timeDisplay'>{date.toLocaleTimeString()}</h2>
       <div className="accordion-container">
