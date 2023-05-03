@@ -1,0 +1,16 @@
+{
+    "name": "FOCALISE",
+    "version": "15.2.76",
+    "description": "A productivity app for people with ADHD",
+    "manifest_version": 3,
+    "author": "I am the Walrus",
+    "action": {
+        "default_popup": "index.html",
+        "default_title":  "FOCALISE"
+    },
+    "icons": {
+        "16": "/assets/F-16.png",
+        "48": "/assets/F-48.png",
+        "128": "/assets/F-128.png"
+    }
+}
