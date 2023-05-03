@@ -1,12 +1,28 @@
 import './HomePage.css'
-import {useState, useEffect} from 'react'
-import Select from "react-select";
+import { useState, useEffect } from 'react'
 
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
   const [isAccordion1Open, setIsAccordion1Open] = useState(false);
-  const [ backgroundColor,setBackgroundColor] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('')
+  const [fontColor, setFontColor] = useState('')
+  const [fontSize, setFontSize] = useState('')
 
+  useEffect(() => {
+    const savedColor = localStorage.getItem("backgroundColor");
+    const fontColor = localStorage.getItem('fontColor');
+    const savedFontSize = localStorage.getItem('fontSize')
+    if (savedColor) {
+      setBackgroundColor(savedColor);
+    }
+    if (fontColor) {
+      setFontColor(fontColor)
+    }
+    if (savedFontSize) {
+      setFontSize(Number(savedFontSize))
+    }
+    
+  }, []);
 
   useEffect(() => {
     const timerID = setInterval(() => {
@@ -22,30 +38,8 @@ export default function HomePage() {
     setIsAccordion1Open(!isAccordion1Open);
   };
 
-  const handleColorChange = (selectedOption) => {
-    const color = selectedOption.value;
-    setBackgroundColor(color);
-    localStorage.setItem("backgroundColor", color);
-  };
-
-  const colorOptions = [
-    { value: "#D17B88", label: "Rose" },
-    { value: "#E2E4F6", label: "Lavender" },
-    { value: "#BEC7A8", label: "Sage" },
-    { value: "#B1CBD2", label: "Light Grey" },
-    { value: "#F4C095", label: "Peach" },
-  ];
-
-  useEffect(() => {
-    const savedColor = localStorage.getItem("backgroundColor");
-    if (savedColor) {
-      setBackgroundColor(savedColor);
-    }
-  }, []);
-  
-
   return (
-    <div className='homepage-body' style={{backgroundColor}}>
+    <div className='homepage-body' style={{backgroundColor, color: fontColor, fontSize}}>
       <h1 className='greeting'>Good afternoon user, the time now is: </h1>
       <h2 className='timeDisplay'>{date.toLocaleTimeString()}</h2>
       <div className="accordion-container">
@@ -63,15 +57,14 @@ export default function HomePage() {
               </div>
             )}
           </div>
-    <Select className="colour-dropdown" options={colorOptions} onChange={handleColorChange}/>
-    </div>
-    </div>
-    <section>
-  <div className='air air1'></div>
-  <div className='air air2'></div>
-  <div className='air air3'></div>
-  <div className='air air4'></div>
-</section>
+        </div>
+      </div>
+      <section>
+        <div className='air air1'></div>
+        <div className='air air2'></div>
+        <div className='air air3'></div>
+        <div className='air air4'></div>
+      </section>
     </div>
   )
 }
