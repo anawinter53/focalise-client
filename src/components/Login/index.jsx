@@ -4,7 +4,7 @@ import "./login.css";
 import { user } from "../../context/index";
 
 export default function Login() {
-  const { id, setID, email, setEmail, password, setPassword, username, setUsername } =
+  const { id, setID, email, setEmail, password, setPassword, username, setUsername, token, setToken } =
     user();
 
   const emailHandler = (e) => {
@@ -23,13 +23,14 @@ export default function Login() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify({ username: username, password: password }),
       };
 
-      const res = await fetch("http://localhost:4000/users/login", options);
+      const res = await fetch("http://127.0.0.1:4000/login", options);
       const data = await res.json();
-      setID(data.userid);
-      setUsername(data.username);
+      // setID(data.userid);
+      // setUsername(data.username);
+      setToken(data.token)
     };
 
     loginUser();
