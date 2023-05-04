@@ -27,6 +27,7 @@ export default function Login() {
       const res = await fetch("http://127.0.0.1:4000/login", options);
       const data = await res.json();
       setToken(data.token);
+      setID(data.id)
       console.log(token);
     };
 
@@ -36,6 +37,7 @@ export default function Login() {
     if (token) {
       localStorage.setItem("token", `${token}`);
       localStorage.setItem("username", `${username}`);
+      localStorage.setItem("id", `${id}`);
       window.location.assign("/");
     }
   }, [token]);
