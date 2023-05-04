@@ -4,11 +4,11 @@ import "./login.css";
 import { user } from "../../context/index";
 
 export default function Login() {
-  const { id, setID, email, setEmail, password, setPassword, username, setUsername, token, setToken } =
+  const { id, setID, password, setPassword, username, setUsername, token, setToken } =
     user();
 
-  const emailHandler = (e) => {
-    setEmail(e.target.value);
+  const usernameHandler = (e) => {
+    setUsername(e.target.value);
   };
 
   const passwordHandler = (e) => {
@@ -22,32 +22,29 @@ export default function Login() {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ username: username, password: password }),
       };
-
       const res = await fetch("http://127.0.0.1:4000/login", options);
       const data = await res.json();
-      // setID(data.userid);
-      // setUsername(data.username);
-      setToken(data.token)
+      setToken(data.token);
+      console.log(token);
     };
 
     loginUser();
   }
   useEffect(() => {
-    if (id) {
-      localStorage.setItem("userid", `${id}`);
+    if (token) {
+      localStorage.setItem("token", `${token}`);
       localStorage.setItem("username", `${username}`);
       window.location.assign("/");
     }
-  }, [id]);
+  }, [token]);
 
   return (
     <div id="login-page">
       <h2>Login</h2>
       <form>
-        <input onChange={emailHandler} type="email" placeholder="Email"></input>
+        <input onChange={usernameHandler} type="username" placeholder="Username"></input>
         <input
           onChange={passwordHandler}
           type="password"
