@@ -14,8 +14,6 @@ export default function SensoryPage() {
     function scrollToVideoFrame() {
         document.getElementById('video-frame').scrollIntoView()
     }
-    
-    
   return (
         <div style={{backgroundColor: `${theme.primColor}`}}>
             <section id="select-time" style={{height: '100vh'}}>
