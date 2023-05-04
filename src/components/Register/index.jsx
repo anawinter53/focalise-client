@@ -108,7 +108,7 @@ export default function Register() {
                   </div>
                   <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
                 </form>
-                <div className='mt-3'><a  href="/register">Create Account</a></div>
+                <div className='mt-3'><a  href="/login">Have an account?</a></div>
           </div>
         </div>
     </section>
