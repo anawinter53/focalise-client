@@ -36,6 +36,7 @@ export default function Header() {
                 <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
               </li>
             </ul>
+            <span className="navbar-text">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row-reverse">
             <li className="nav-item dropdown">
                 <a className="nav-link" href="#" style={{color: `${theme.primText}`}} role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
@@ -68,7 +69,7 @@ export default function Header() {
                 </li>
               </>}
             </ul>
-            
+            </span>  
           </div>
         </div>
       </nav>
