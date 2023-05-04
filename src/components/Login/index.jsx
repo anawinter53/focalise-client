@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import "./login.css";
+import { useTheme } from "../../contexts";
 
 import { user } from "../../context/index";
 
 export default function Login() {
   const { id, setID, password, setPassword, username, setUsername, token, setToken } =
     user();
-
-  const usernameHandler = (e) => {
+  const  { theme } = useTheme()
+  const emailHandler = (e) => {
     setUsername(e.target.value);
   };
 
@@ -24,7 +25,8 @@ export default function Login() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username, password: password }),
       };
-      const res = await fetch("http://127.0.0.1:4000/login", options);
+      console.log(options)
+      const res = await fetch("http://localhost:4000/login", options);
       const data = await res.json();
       setToken(data.token);
       setID(data.id)
@@ -40,25 +42,29 @@ export default function Login() {
       localStorage.setItem("id", `${id}`);
       window.location.assign("/");
     }
-  }, [token]);
+  }, [id]);
+  useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   return (
-    <div id="login-page">
-      <h2>Login</h2>
-      <form>
-        <input onChange={usernameHandler} type="username" placeholder="Username"></input>
-        <input
-          onChange={passwordHandler}
-          type="password"
-          placeholder="Password"
-        ></input>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
-      <p>
-        No account? <a href="/register">Register Here</a>
-      </p>
-    </div>
+    <section>
+        <div id="login-page" className="d-flex justify-content-center align-items-center">
+          <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
+              <form>
+                  <div className="mb-3">
+                    <label htmlFor="Email1" className="form-label">Email address</label>
+                    <input onChange={emailHandler} type="email" className="form-control" id="Email1" aria-describedby="emailHelp"/>
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="Password1" className="form-label">Password</label>
+                    <input  onChange={passwordHandler} type="password" className="form-control" id="Password1"/>
+                  </div>
+                  <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
+                </form>
+                <div className='mt-3'><a  href="/register">Create Account</a></div>
+          </div>
+        </div>
+    </section>
+    
   );
 }
