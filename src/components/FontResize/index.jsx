@@ -18,8 +18,9 @@ export default function FontResize (props) {
 
   return (
     <div>
+      <label htmlFor='font-size-dropdown'>Choose your font size</label>
       <Select
-        className='colour-dropdown'
+        className='font-size-dropdown'
         options={sizeOptions}
         onChange={handleFontResize}
         defaultValue={{ value: localStorage.getItem('fontSize'), label: localStorage.getItem('fontSize') }}

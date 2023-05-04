@@ -78,11 +78,9 @@ export default function ProfilePage() {
             <h3 className="extraInfo">Email Address</h3>
           </div>
           <div className="col-md-6">
-            <label>Choose background colour</label>
+            <h2>Screen settings</h2>
           <ColourChanger onColorChange={handleBackgroundColorChange}/>
-          <label>Choose a font colour</label>
           <FontColourChanger onFontChange={handleFontColorChange}/>
-          <label>Choose your font size</label>
           <FontResize onFontResize={handleFontResize}/>
           </div>
         </div>

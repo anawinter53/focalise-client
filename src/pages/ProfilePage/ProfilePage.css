@@ -87,3 +87,8 @@ section .air{
     max-width: 200px;
     max-height: 200px;
   }
+
+  .font-size-dropdown {
+      width: fit-content;
+      margin: 0 auto;
+  }

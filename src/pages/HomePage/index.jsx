@@ -41,12 +41,11 @@ export default function HomePage() {
   return (
     <div className='homepage-body' style={{backgroundColor, color: fontColor, fontSize}}>
       <h1 className='greeting'>Good afternoon user, the time now is: </h1>
-      <h2 className='timeDisplay'>{date.toLocaleTimeString()}</h2>
+      <h2 className='timeDisplay' data-testid="timeDisplay">{date.toLocaleTimeString()}</h2>
       <div className="accordion-container">
         <div className="grid-container">
-          <div className="accordion" onClick={toggleAccordion1} data-testid="accordion1">
+          <div className="accordion" onClick={toggleAccordion1} data-testid="accordion">
             <h2 className="accordion-title">Here are some tasks you can complete today</h2>
-            ...
             {isAccordion1Open && (
               <div className="accordion-content">
                 <ul>
