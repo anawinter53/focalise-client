@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { user } from "../../context/index";
+import { useTheme } from "../../contexts";
 
 export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState(""); 
   const { username, setUsername, password, setPassword, email, setEmail } =
     user();
+  const {theme} = useTheme()
+  useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   const confirmPasswordHandler = (e) => {
     setConfirmPassword(e.target.value);
@@ -55,38 +58,31 @@ export default function Register() {
 
   return (
     <div id="register-page">
-      <h2 className="register-title">Register</h2>
-      <div className="form-container">
-        <label htmlFor="username-input">Enter your username</label>
+      <h2>Register</h2>
+      <form>
         <input
-          className="username-input"
           onChange={usernameHandler}
           type="text"
           placeholder="Username"
         ></input>
-        <label htmlFor="password-input">Enter your new password</label>
         <input
-          className="password-input"
           onChange={passwordHandler}
           type="password"
           placeholder="Password"
         ></input>
-        <label htmlFor="repeat-password-input">Repeat your password</label>
         <input
-          className="repeat-password-input"
           onChange={confirmPasswordHandler}
           type="password"
           placeholder="Confirm Password"
         ></input>
-        <label htmlFor="email-input">Enter your email</label>
-        <input className="email-input" onChange={emailHandler} type="email" placeholder="Email"></input>
-        <button className="submit-button" type="submit" onClick={handleSubmit}>
+        <input onChange={emailHandler} type="email" placeholder="Email"></input>
+        <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
+      </form>
       <p>
         Already registered? <a href="/login">Login Here</a>
       </p>
     </div>
-      </div>
   );
 }

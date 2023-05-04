@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import "./login.css";
+import { useTheme } from "../../contexts";
 
 import { user } from "../../context/index";
 
 export default function Login() {
-  const { id, setID, email, setEmail, password, setPassword, username, setUsername } =
+  const { id, setID, password, setPassword, username, setUsername, token, setToken } =
     user();
-
+  const  { theme } = useTheme()
   const emailHandler = (e) => {
-    setEmail(e.target.value);
+    setUsername(e.target.value);
   };
 
   const passwordHandler = (e) => {
@@ -22,38 +23,49 @@ export default function Login() {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify({ username: username, password: password }),
       };
-
-      const res = await fetch("http://localhost:4000/users/login", options);
+      console.log(options)
+      const res = await fetch("http://localhost:4000/login", options);
       const data = await res.json();
-      setID(data.userid);
-      setUsername(data.username);
+      setToken(data.token);
+      setID(data.id)
+      console.log(token);
     };
 
     loginUser();
   }
   
   useEffect(() => {
-    if (id) {
-      localStorage.setItem("userid", `${id}`);
+    if (token) {
+      localStorage.setItem("token", `${token}`);
       localStorage.setItem("username", `${username}`);
+      localStorage.setItem("id", `${id}`);
       window.location.assign("/");
     }
   }, [id]);
+  useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   return (
-    <div className="login-page">
-      <h2 className="login-title">Login</h2>
-      <div className="form-container">
-        <label htmlFor="email-input">Enter your email</label>
-        <input className="email-input" onChange={emailHandler} type="email" placeholder="Email" />
-        <label htmlFor="password-input">Enter your password</label>
-        <input className="password-input" onChange={passwordHandler} type="password" placeholder="Password" />
-        <button className="submit-button" type="submit" onClick={handleSubmit}>Submit</button>
-      </div>
-      <p>No account? <a href="/register">Register Here</a></p>
-    </div>
+    <section>
+        <div id="login-page" className="d-flex justify-content-center align-items-center">
+          <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
+              <form>
+                  <div className="mb-3">
+                    <label htmlFor="Email1" className="form-label">Email address</label>
+                    <input onChange={emailHandler} type="email" className="form-control" id="Email1" aria-describedby="emailHelp"/>
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="Password1" className="form-label">Password</label>
+                    <input  onChange={passwordHandler} type="password" className="form-control" id="Password1"/>
+                  </div>
+                  <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
+                </form>
+                <div className='mt-3'><a  href="/register">Create Account</a></div>
+          </div>
+        </div>
+    </section>
+    
   );
 }
