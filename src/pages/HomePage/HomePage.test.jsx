@@ -9,7 +9,7 @@ expect.extend(matchers);
 
 import HomePage from '.';
 
-describe("Homepage", () => {
+describe("Home Page", () => {
     beforeEach(() => {
         render(
                 <BrowserRouter>
@@ -27,15 +27,5 @@ describe("Homepage", () => {
         expect(heading[0]).toBeInTheDocument();
         expect(heading[0].textContent).toBe("Good afternoon user, the time now is: ")
     })
-
-    // it("Displays a button that changes location when clicked", async () => {
-    //     const button = screen.getByRole('button')
-    //     expect(button).toBeInTheDocument();
-
-    //     expect(window.location.href).not.toContain('/signup');
-    //     const signup = screen.getByText('Get Started!');
-    //     await userEvent.click(signup)
-    //     expect(window.location.href).toContain('/signup');
-    // })
 
 })
