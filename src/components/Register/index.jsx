@@ -1,6 +1,6 @@
 import React from "react";
 import "./register.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { user } from "../../context/index";
 import { useTheme } from "../../contexts";
 
@@ -9,6 +9,8 @@ export default function Register() {
   const { username, setUsername, password, setPassword, email, setEmail } =
     user();
   const {theme} = useTheme()
+  useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
+
   const confirmPasswordHandler = (e) => {
     setConfirmPassword(e.target.value);
   };
