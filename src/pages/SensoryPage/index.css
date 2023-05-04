@@ -1,3 +1,18 @@
-body {
-    overflow-y:hidden;
+/* body {
+    overflow:hidden;
+}
+.tag {
+    opacity: 0;
+    transform: translate(0, 10vh);
+    transition: all 1s;
+  }
+  
+  .tag.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+  } */
+.center-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
