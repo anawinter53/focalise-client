@@ -2,8 +2,7 @@ import {describe, it, expect, beforeEach} from 'vitest';
 import { fireEvent, getByRole, getByTestId, render, screen } from '@testing-library/react';
 import matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
-import ProfilePage from './index'
-import {Select} from 'react-select'
+import ProfilePage from '.'
 
 describe('Profile Page', () => {
   beforeEach(() => {

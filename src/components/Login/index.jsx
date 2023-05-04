@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./login.css";
 
 import { user } from "../../context/index";
@@ -34,6 +34,7 @@ export default function Login() {
 
     loginUser();
   }
+  
   useEffect(() => {
     if (id) {
       localStorage.setItem("userid", `${id}`);
@@ -43,22 +44,16 @@ export default function Login() {
   }, [id]);
 
   return (
-    <div id="login-page">
-      <h2>Login</h2>
-      <form>
-        <input onChange={emailHandler} type="email" placeholder="Email"></input>
-        <input
-          onChange={passwordHandler}
-          type="password"
-          placeholder="Password"
-        ></input>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
-      <p>
-        No account? <a href="/register">Register Here</a>
-      </p>
+    <div className="login-page">
+      <h2 className="login-title">Login</h2>
+      <div className="form-container">
+        <label htmlFor="email-input">Enter your email</label>
+        <input className="email-input" onChange={emailHandler} type="email" placeholder="Email" />
+        <label htmlFor="password-input">Enter your password</label>
+        <input className="password-input" onChange={passwordHandler} type="password" placeholder="Password" />
+        <button className="submit-button" type="submit" onClick={handleSubmit}>Submit</button>
+      </div>
+      <p>No account? <a href="/register">Register Here</a></p>
     </div>
   );
 }
