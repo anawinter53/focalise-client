@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react'
-import Register from '../../components/Register'
-import './RegisterPage.css'
+import {useState, useEffect} from 'react';
+import Register from '../../components/Register';
+import './RegisterPage.css';
 
 export default function RegisterPage() {
   const [backgroundColor, setBackgroundColor] = useState('')
