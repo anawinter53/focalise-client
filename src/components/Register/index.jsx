@@ -1,5 +1,3 @@
-import React from "react";
-import "./register.css";
 import { useState, useEffect } from "react";
 import { user } from "../../context/index";
 import { useTheme } from "../../contexts";
@@ -86,6 +84,5 @@ export default function Register() {
           </div>
         </div>
     </section>
-
   );
 }
