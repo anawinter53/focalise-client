@@ -76,18 +76,12 @@ export default function ProfilePage() {
             </div>
             <h3 className="profileName">Profile Name</h3>
             <h3 className="extraInfo">Email Address</h3>
-            <h3 className="extraInfo">Bio</h3>
-            <p className="bio">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
           </div>
           <div className="col-md-6">
-            <label>Choose background colour</label>
+            <h2>Screen settings</h2>
           <ColourChanger onColorChange={handleBackgroundColorChange}/>
-          <label>Choose a font colour</label>
           <FontColourChanger onFontChange={handleFontColorChange}/>
-          <label>Choose your font size</label>
           <FontResize onFontResize={handleFontResize}/>
-            <p>Test</p>
-            <p>Test</p>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ section .air{
     }
   }
 
-  .profile-page-body{
+.login-page-body {
     position: relative;
     position: absolute;
     margin: auto;
@@ -60,35 +60,49 @@ section .air{
     overflow: hidden;
     text-align: center;
     font-family: monospace;
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     color: white;
-  }
-
-  .profile-image-container {
-    width: 100%;
-    height: auto;
     display: flex;
-    justify-content: center;
-  }
+    flex-direction: column;
+    align-items: center;
+}
 
-  .profileName {
+.login-title {
     margin-top: 50px;
-  }
+}
 
-  .extraInfo {
-    margin-top: 10px;
-  }
-
-  .profile-image {
-    border-radius: 50%;
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 20px;
-    margin-top: 20px;
-    max-width: 200px;
-    max-height: 200px;
+  }
+  
+  .email-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
 
-  .font-size-dropdown {
-      width: fit-content;
-      margin: 0 auto;
+  .password-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+  }
+  
+  .submit-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0062cc;
   }

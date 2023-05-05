@@ -37,7 +37,7 @@ export default function Header() {
               </li>
             </ul>
             <span className="navbar-text">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row-reverse">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
             <li className="nav-item dropdown">
                 <a className="nav-link" href="#" style={{color: `${theme.primText}`}} role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
                   Change Theme
@@ -62,10 +62,7 @@ export default function Header() {
               </> : 
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="/register" style={{color: `${theme.primText}`}}>Register</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/login" style={{color: `${theme.primText}`}}>Login</a>
+                  <a className="nav-link" href="/login" style={{color: `${theme.primText}`}}>Login/Register</a>
                 </li>
               </>}
             </ul>
