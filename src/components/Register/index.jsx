@@ -58,36 +58,8 @@ export default function Register() {
     }
   }
 
-  return (
-    // <div id="register-page">
-    //   <h2>Register</h2>
-    //   <form>
-    //     <input
-    //       onChange={usernameHandler}
-    //       type="text"
-    //       placeholder="Username"
-    //     ></input>
-    //     <input
-    //       onChange={passwordHandler}
-    //       type="password"
-    //       placeholder="Password"
-    //     ></input>
-    //     <input
-    //       onChange={confirmPasswordHandler}
-    //       type="password"
-    //       placeholder="Confirm Password"
-    //     ></input>
-    //     <input onChange={emailHandler} type="email" placeholder="Email"></input>
-    //     <button type="submit" onClick={handleSubmit}>
-    //       Submit
-    //     </button>
-    //   </form>
-    //   <p>
-    //     Already registered? <a href="/login">Login Here</a>
-    //   </p>
-    // </div>
-
-    <section>
+  return ( 
+   <section>
         <div id="login-page" className="d-flex justify-content-center align-items-center">
           <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
               <form>
