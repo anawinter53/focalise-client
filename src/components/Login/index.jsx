@@ -58,7 +58,7 @@ export default function Login() {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="Password1" className="form-label">Password</label>
-                    <input  onChange={passwordHandler} type="password" className="form-control" id="Password1"/>
+                    <input  onChange={passwordHandler} placeholder="password" type="password" className="form-control" id="Password1"/>
                   </div>
                   <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
                 </form>
