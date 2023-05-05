@@ -1,22 +1,58 @@
 import { useTheme } from '../../contexts/themes'
 import '../SensoryPage/index.css'
 import 'animate.css';
-
+import { Time, Type, Video } from '../../components';
+import { useState } from 'react';
 
 export default function SensoryPage() {
     const { theme } = useTheme();
-    function scrollToTime(){
-        window.scrollTo(0, 0)
+    const [time, setTime] = useState()
+    const [type, setType] = useState()
+    const [render, setRender] = useState()
+
+    // var timerTime = 0
+    // function scrollToTime(){
+    //     window.scrollTo(0, 0)
+    // }
+    // function scrollToType(){
+    // document.getElementById('select-type').scrollIntoView()
+    // }
+    // function scrollToVideoFrame() {
+    //     document.getElementById('video-frame').scrollIntoView()
+    // }
+    function handleTime(tm) {
+        setTime(tm)
+        setRender("type")
+        console.log('time from child', time)
+        RenderView()
+
     }
-    function scrollToType(){
-    document.getElementById('select-type').scrollIntoView()
+    function handleType(ty) {
+        setType(ty)
+        setRender('video')
+        console.log('type from child', type)
+        RenderView()
     }
-    function scrollToVideoFrame() {
-        document.getElementById('video-frame').scrollIntoView()
+    function RenderView() {
+
+        if (render === 'video') {
+            return <Video time={time} type={type} />
+        }
+        else if (render === 'type') {
+            return <Type handleType={handleType} />
+        }
+        else {
+            return <Time handleTime={handleTime} />
+        }
     }
-  return (
-        <div style={{backgroundColor: `${theme.primColor}`}}>
-            <section id="select-time" style={{height: '100vh'}}>
+
+    return (
+        <div style={{ backgroundColor: `${theme.primColor}` }}>
+
+            <RenderView/>
+
+
+            {/* <section id="select-time" style={{height: '100vh'}}>
             <div className="d-flex aligns-items-center justify-content-center p-5">
                 <div className="container text-center m-5 py-5 shadow rounded" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`}}>
                     <h1>Welcome to the sensory room!</h1><br/><h2>How long do you want to be here?</h2>
@@ -73,8 +109,8 @@ export default function SensoryPage() {
                         </div>
                     </div>
                 </div>
-            </section>
-            
+            </section> */}
+
         </div>
-  )
+    )
 }
