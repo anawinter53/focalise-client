@@ -1,7 +1,7 @@
 import React from "react";
 import "./register.css";
 import { useState, useEffect } from "react";
-import { user } from "../../context/index";
+import { user } from "../../contexts/user";
 import { useTheme } from "../../contexts";
 
 export default function Register() {

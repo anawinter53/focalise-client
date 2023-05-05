@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import "./login.css";
 import { useTheme } from "../../contexts";
-
-import { user } from "../../context/index";
+import { user } from "../../contexts/user";
 
 export default function Login() {
   const { id, setID, password, setPassword, username, setUsername, token, setToken } =
