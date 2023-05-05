@@ -26,7 +26,7 @@ export default function Login() {
         body: JSON.stringify({ username: username, password: password }),
       };
       console.log(options)
-      const res = await fetch("http://localhost:4000/login", options);
+      const res = await fetch("http://localhost:4000/users/login", options);
       const data = await res.json();
       setToken(data.token);
       setID(data.id)

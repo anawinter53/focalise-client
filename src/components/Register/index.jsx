@@ -41,11 +41,11 @@ export default function Register() {
         }),
       };
 
-      const res = await fetch("http://127.0.0.1:4000/users/new", options);
+      const res = await fetch("http://localhost:4000/users/register", options);
 
       if (res.ok) {
         console.log(`You have successfully signed up ${username}`);
-        window.location.assign("/login");
+        window.location.assign("/users/login");
       } else {
         console.log("error in signup");
       }
