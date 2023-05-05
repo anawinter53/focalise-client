@@ -16,6 +16,7 @@
     "fa-icon-list": "^1.0.0",
     "jest-localstorage-mock": "^2.4.26",
     "jquery": "^3.6.4",
+    "openai": "^3.2.1",
     "mock-local-storage": "^1.1.23",
     "popper.js": "^1.16.1",
     "react": "^18.2.0",

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import "./login.css";
 import { useTheme } from "../../contexts";
-
-import { user } from "../../context/index";
+import { user } from "../../contexts/user";
 
 export default function Login() {
   const { id, setID, password, setPassword, username, setUsername, token, setToken } =
@@ -26,7 +25,7 @@ export default function Login() {
         body: JSON.stringify({ username: username, password: password }),
       };
       console.log(options)
-      const res = await fetch("http://localhost:4000/login", options);
+      const res = await fetch("http://localhost:4000/users/login", options);
       const data = await res.json();
       setToken(data.token);
       setID(data.id)

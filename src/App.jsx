@@ -2,7 +2,7 @@ import * as Pages from './pages'
 import {Routes, Route} from 'react-router-dom'
 import * as Layouts from './layouts'
 
-import { UserProvider } from "./context";
+import { UserProvider } from "./contexts/user";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
             <Route path='/register' element={<Pages.RegisterPage />}/>
             <Route path='/login' element={<Pages.LoginPage />}/>
             <Route path='/logout' element={<Pages.LogoutPage />}/>
+            <Route path='/bodydouble' element={<Pages.BodyDouble />}/>
         </Route>
       </Routes>
     </UserProvider>
