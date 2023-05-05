@@ -52,43 +52,43 @@ section .air{
     }
   }
 
-  .profile-page-body{
-    position: relative;
-    position: absolute;
-    margin: auto;
-    background: rgba(75, 75, 250, 0.3);
-    overflow: hidden;
-    text-align: center;
-    font-family: monospace;
-    min-height: 100vh;
-    width: 100vw;
-    color: white;
-  }
+  .register-page-body {
+        position: relative;
+        position: absolute;
+        margin: auto;
+        background: rgba(75, 75, 250, 0.3);
+        overflow: hidden;
+        text-align: center;
+        font-family: monospace;
+        height: 100vh;
+        width: 100vw;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-  .profile-image-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-  }
+    .register-title {
+        margin-top: 50px;
+    }
 
-  .profileName {
-    margin-top: 50px;
-  }
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      
+    .username-input {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
 
-  .extraInfo {
-    margin-top: 10px;
-  }
-
-  .profile-image {
-    border-radius: 50%;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    max-width: 200px;
-    max-height: 200px;
-  }
-
-  .font-size-dropdown {
-      width: fit-content;
-      margin: 0 auto;
-  }
+    .repeat-password-input {
+        padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    }
