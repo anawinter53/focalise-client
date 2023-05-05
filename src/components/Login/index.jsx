@@ -51,9 +51,9 @@ export default function Login() {
           <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
               <form>
                   <div className="mb-3">
-                    <label htmlFor="Email1" className="form-label">Email address</label>
-                    <input onChange={emailHandler} type="email" className="form-control" id="Email1" aria-describedby="emailHelp"/>
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                    <label htmlFor="Email1" className="form-label">Username</label>
+                    <input onChange={emailHandler} type="email" placeholder="username" className="form-control" id="Email1" aria-describedby="emailHelp"/>
+                    <div id="emailHelp" className="form-text">We'll never share your details with anyone else.</div>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="Password1" className="form-label">Password</label>
