@@ -7,7 +7,7 @@ export default function RegisterPage() {
   const [fontColor, setFontColor] = useState('')
   const [fontSize, setFontSize] = useState('')
 
-  useEffect(() => {
+ useEffect(() => {
     const savedColor = localStorage.getItem("backgroundColor");
     const fontColor = localStorage.getItem('fontColor');
     const savedFontSize = localStorage.getItem('fontSize')

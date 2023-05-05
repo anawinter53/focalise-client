@@ -61,10 +61,9 @@ describe("Login Page", () => {
         expect(submitButton.className).toBe('btn border')
     })
 
-    it('displays the message to register if an account is already held', () => {
+    it('displays the message to register if an account is not already held', () => {
         const registerMessage = screen.getByRole('link')
         expect(registerMessage).toBeInTheDocument()
         expect(registerMessage.href).toBe('http://localhost:3000/register')
-        console.log(registerMessage)
     })
 })
