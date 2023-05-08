@@ -3,11 +3,12 @@ import '../SensoryPage/index.css'
 import 'animate.css';
 import { Time, Type, Video } from '../../components';
 import { useState } from 'react';
+import * as Constant from '../../constants'
 
 export default function SensoryPage() {
     const { theme } = useTheme();
-    const [time, setTime] = useState()
-    const [type, setType] = useState()
+    const [sensoryTime, setSensoryTime] = useState(0)
+    const [videoLink, setVideoLink] = useState('')
     const [render, setRender] = useState()
 
     // var timerTime = 0
@@ -20,26 +21,38 @@ export default function SensoryPage() {
     // function scrollToVideoFrame() {
     //     document.getElementById('video-frame').scrollIntoView()
     // }
-    function handleTime(tm) {
-        setTime(tm)
+    function handleTime(time) {
+        setSensoryTime(time)
         setRender("type")
-        console.log('time from child', time)
         RenderView()
-
     }
-    function handleType(ty) {
-        setType(ty)
+    function handleType(type,) {
+        getSensoryVideos(type)
         setRender('video')
-        console.log('type from child', type)
         RenderView()
+    }
+    const getSensoryVideos = async (type) => {
+        const options = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ "video_category": `${type}` }),
+          };
+          console.log(options)
+          const res = await fetch( Constant.MAIN_URl + "sensory/", options);
+          const data = await res.json();
+          //random
+          const rand = Math.floor(Math.random() * data.length)
+          const rand_data = data[rand]
+          setVideoLink(rand_data.video_url);
+          console.log(videoLink, data)
     }
     function RenderView() {
 
         if (render === 'video') {
-            return <Video time={time} type={type} />
+            return <Video time={sensoryTime} videoLink={videoLink} />
         }
         else if (render === 'type') {
-            return <Type handleType={handleType} />
+            return <Type handleType={handleType}/>
         }
         else {
             return <Time handleTime={handleTime} />

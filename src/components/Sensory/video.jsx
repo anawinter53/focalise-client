@@ -1,20 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from '../../contexts'
-import { renderMatches } from 'react-router-dom';
-// import { useCountdown } from '../../hooks/useCountdown';
-
-
-export default function Video({ time, type }) {
+import TimeUpModal from '../TimeUpModal'
+export default function Video({ time, videoLink}) {
     const { theme } = useTheme()
     const [timer, setTimer] = useState(0);
     const [runTimer, setRunTimer] = useState(false);
-    var showHideClassName = "modal display-none";
+    const [showModal, setShowModal] = useState(false)
 
-
-    function fetchVideoLink() {
-        const link = "https://www.youtube.com/embed/jI9tSvkuVQQ"
-        return link
-    }
     useEffect(() => {
         let timerId;
         if (runTimer) {
@@ -33,8 +25,8 @@ export default function Video({ time, type }) {
         if (timer < 0 && runTimer) {
             setRunTimer(false);
             setTimer(0)
-            showHideClassName = "modal display-block"
-
+            setShowModal(true)
+            console.log('finished')
         }
     }, [timer, runTimer]);
 
@@ -49,19 +41,22 @@ export default function Video({ time, type }) {
     useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` },)
 
     return (
-
         <section id="video-frame">
             <div className="container">
-                <div className="row shadow rounded m-5" style={{ backgroundColor: `${theme.primBG}` }}>
+                <div className="row shadow rounded m-5 position-relative" style={{ backgroundColor: `${theme.primBG}` }}>
                     <p className='fs-5 text-center mt-3' style={{ color: `${theme.primText}` }}>{`${minutes}:${seconds}`}</p>
                     <iframe className='px-5 pb-5' style={{ aspectRatio: 3 / 1.3 }}
                         width="853"
-                        src={fetchVideoLink()}
+                        src={videoLink}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        title="Embedded youtube"
+                        title="type"
                     />
                 </div>
+                <TimeUpModal open={showModal}>
+                    <p>Time to get back to work!<br/>Go back to your workspace?</p>
+                    <a className='btn' style={{backgroundColor:`${theme.accentColor}`}} href="/">Go there now</a>
+                </TimeUpModal>
             </div>
         </section>
     )

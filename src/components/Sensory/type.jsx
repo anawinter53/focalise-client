@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTheme } from '../../contexts'
 export default function Type({handleType}) {
    const { theme } = useTheme()
+
    function typeHandler(e){
         e.preventDefault()
         handleType(e.target.name)
@@ -16,13 +17,13 @@ export default function Type({handleType}) {
                         <h2>What would you like to do?</h2>
                         <div className="row p-5 justify-content-center" style={{}}> 
                             <div className="col-3 m-1" >
-                                <button onClick={typeHandler} name='music' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Music</button>
+                                <button onClick={typeHandler} name='Music' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Music</button>
                             </div>
                             <div className="col-3 m-1">
-                                <button onClick={typeHandler} name='animal' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Animal</button>
+                                <button onClick={typeHandler} name='Animals' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Animal</button>
                             </div>
                             <div className="col-3 m-1">
-                                <button onClick={typeHandler} name='meditation' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Meditation</button>
+                                <button onClick={typeHandler} name='Meditation' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Meditation</button>
                             </div>
                         </div>
                     </div>
