@@ -1,12 +1,12 @@
 import { BrowserRouter } from "react-router-dom";
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { screen, render, cleanup } from '@testing-library/react';
 
 import matchers from '@testing-library/jest-dom/matchers'
 expect.extend(matchers);
 import LoginPage from '.';
-import {UserProvider} from '../../context/index'
-import { ThemeProvider } from "../../contexts";
+import {UserProvider} from '../../contexts/user'
+import { ThemeProvider } from "../../contexts/themes";
 
 describe("Login Page", () => {
     beforeEach(() => {
@@ -26,9 +26,9 @@ describe("Login Page", () => {
     })
 
     it("Displays the email address label", () => {
-        const email = screen.getByText('Email address')
+        const email = screen.getByText('Username')
         expect(email).toBeInTheDocument();
-        expect(email.textContent).toBe('Email address')
+        expect(email.textContent).toBe('Username')
     })
 
     it('Displays the password label', () => {
@@ -44,9 +44,9 @@ describe("Login Page", () => {
     })
 
     it('Displays the security message beneath the email input', () => {
-        const securityMessage = screen.getByText("We'll never share your email with anyone else.")
+        const securityMessage = screen.getByText("We'll never share your details with anyone else.")
         expect(securityMessage).toBeInTheDocument()
-        expect(securityMessage.textContent).toBe("We'll never share your email with anyone else.")
+        expect(securityMessage.textContent).toBe("We'll never share your details with anyone else.")
     })
 
     it('Displays the password input box', () => {
