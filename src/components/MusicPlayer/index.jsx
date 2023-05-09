@@ -102,7 +102,7 @@ export const MusicPlayer = () => {
         }))}
         onChange={playTrack}
       />
-      <button onClick={pauseTrack}>Pause</button>
+      <button onClick={pauseTrack}>{isPaused ? 'Play' : 'Pause'}</button>
     </div>
   );
 };
