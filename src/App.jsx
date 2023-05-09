@@ -3,10 +3,12 @@ import {Routes, Route} from 'react-router-dom'
 import * as Layouts from './layouts'
 
 import { UserProvider } from "./contexts/user";
+import { Notifications } from 'react-push-notification';
 
 function App() {
   return (
     <UserProvider>
+      <Notifications />
       <Routes>
         <Route element={<Layouts.Header/>}>
             <Route  path="/" element={<Pages.HomePage />}/>
