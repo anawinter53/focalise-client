@@ -1,10 +1,10 @@
 import * as Pages from './pages'
 import {Routes, Route} from 'react-router-dom'
 import * as Layouts from './layouts'
-
 import { UserProvider } from "./contexts/user";
 
 function App() {
+
   return (
     <UserProvider>
       <Routes>
