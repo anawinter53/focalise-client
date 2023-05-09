@@ -1,7 +1,7 @@
 import {Outlet } from "react-router-dom"
 import { useTheme } from '../../contexts'
 import 'bootstrap/js/dist/dropdown'
-
+import { MusicPlayer } from "../../components/MusicPlayer"
 
 export default function Header() {
   const { theme, setTheme, themes } = useTheme()
@@ -34,6 +34,9 @@ export default function Header() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
+              </li>
+              <li>
+                <MusicPlayer />
               </li>
             </ul>
             <span className="navbar-text">
