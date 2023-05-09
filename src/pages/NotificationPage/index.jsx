@@ -1,82 +1,86 @@
 import addNotification from 'react-push-notification'
 import { Notifications} from 'react-push-notification'
 import { useEffect, useState } from 'react'
+import './NotificationPage.css'
 
 function NotificationPage() {
 
     const [notifyTime, setNotifyTime] = useState(null)
     const [countDown, setCountDown] = useState(null)
+    const [breakCountDown, setBreakCountDown] = useState(null)
 
     function buttonOnClick() {
-        // setTimeout(() => {
-        //     setNotifyTime(true)
-        //     }, 10000
-        // )
-        // clearTimeout()
-        // const time = Date.now()
-        // setNotifyTime(time + 10000)
         setCountDown(10)
 
     }
 
-    const startCountDown = () => {
-        
-    }
-
     useEffect(() => {
-        if (countDown >= 0) {
-            const interval = setInterval(() => {
-                console.log(countDown)
+        let interval
+        if (countDown > 0) {
+            interval = setInterval(() => {
                 setCountDown(countDown - 1)
-                if (countDown === 0) {
-                    // sendNotification()
-                    // setCountDown(null)
-                    clearInterval(interval)
-                    setCountDown(null)
-                }
-            
             }, 1000)
         }
-
-
-        console.log('outside interval')
+        if (countDown === 0) {
+            sendWorkFinishedNotification()
+            setCountDown(null)
+        }
     
-        // return () => {
-        //   clearInterval(interval);
-        // };
+        return () => {
+          clearInterval(interval);
+        };
       }, [countDown]);
 
-    
-
-    // useEffect(() => {
-    //     let time = Date.now()
-    //     console.log(notifyTime)
-    //     console.log(time)
-    //     setInterval(() => {
-    //         if (time >= notifyTime) {
-    //             // sendNotification()
-    //         setNotifyTime(null)
-    //         }
-    //     }, 1000)
-
-    // })
-
-    const sendNotification = () => {
+    const sendWorkFinishedNotification = () => {
         addNotification({
-            title: 'Break over',
-            message: 'Time to get back to work',
+            title: 'Time\s Up!',
+            message: 'Congratulations on finishing your session',
+            native: true
+        })
+    }
+
+    const sendStartBreakNotification = () => {
+        addNotification({
+            title: 'Break Time!',
+            message: 'Time to have a break. Why not check out our sensory room?',
+            native: true
+        })
+    }
+
+    const sendBreakFinishedNotification = () => {
+        addNotification({
+            title: 'Break\'s Over!',
+            message: 'It\'s time to get back to work',
             native: true
         })
     }
 
 
     return <div className='notification'>
-        {/* <Notifications /> */}
-        <h1>Notifications page</h1>
+        <h1>Workplans page</h1>
         <button onClick={buttonOnClick}>
             10 second timer
         </button>
         <p>Countdown: {countDown}</p>
+        <div>
+            {countDown ? <h2>Time Remaining: {Math.floor(countDown / 3600)} : {Math.floor((countDown % 3600)/60)} : {countDown % 60}</h2> : ""}
+        </div>
+
+        <div className='work-plans'>
+            <div className='get-started'>
+                <h2>Get started on a task</h2>
+                <p>Getting started is one of the hardest things. Set a timer for just to ten minutes and get one going.</p>
+                <button onClick={() => setCountDown(300)}>Start</button>
+            </div>
+            <div className='work-session'>
+                <h2>Session of work</h2>
+                <p>Set a timer for an hour, with regular breaks in the middle.</p>
+            </div>
+            <div className="deadline">
+                <h2>Working to a deadline</h2>
+                <p>Set a time to finish a task by.</p>
+            </div>
+        </div>
     </div>
 }
 

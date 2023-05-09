@@ -1,0 +1,10 @@
+.work-plans > div {
+    border: 3px solid black;
+    max-width: 15rem;
+    text-align: center;
+}
+
+.work-plans {
+    display: flex;
+    justify-content: space-evenly;
+}
