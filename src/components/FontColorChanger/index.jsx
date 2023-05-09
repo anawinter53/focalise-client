@@ -16,9 +16,9 @@ export default function FontColourChanger (props) {
       ]
      
   return (
-    <div>
-        <label htmlFor='colour-dropdown'>Choose a font colour</label>
-        <Select className='colour-dropdown' options={fontOptions} onChange={handleFontChange}/>
+    <div  className='mb-3'>
+        <label htmlFor='colour-dropdown' className='form-label'>Choose a font colour</label>
+        <Select className='colour-dropdown form-control' options={fontOptions} onChange={handleFontChange}/>
     </div>
   )
 }
