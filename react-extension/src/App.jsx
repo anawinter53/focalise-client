@@ -12,6 +12,7 @@ function App() {
           <Route element={<Layouts.Header/>}>
             <Route path="/" element={<Pages.HomePage />}/>
             <Route path='/login' element={<Pages.LoginPage />}/>
+            <Route path='/loggedin' element={<Pages.LoggedInPage />}/>
             <Route path='/logout' element={<Pages.LogoutPage />}/>
           </Route>
         </Routes>

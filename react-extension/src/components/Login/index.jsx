@@ -1,12 +1,15 @@
 import { useEffect } from "react";
-import "./login.css";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts";
 import { User } from "../../contexts/user";
+import "./login.css";
 
 export default function Login() {
-    const { id, setID, password, setPassword, username, setUsername, token, setToken } =
-    User();
-  const  { theme } = useTheme()
+  const { id, setID, password, setPassword, username, setUsername, token, setToken } =
+  User();
+  const navigate = useNavigate();
+  const  { theme } = useTheme();
+
   const usernameHandler = (e) => {
     setUsername(e.target.value);
   };
@@ -39,7 +42,7 @@ export default function Login() {
       localStorage.setItem("token", `${token}`);
       localStorage.setItem("username", `${username}`);
       localStorage.setItem("id", `${id}`);
-      window.location.assign("/");
+      navigate("/loggedin")
     }
   }, [id]);
   useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
