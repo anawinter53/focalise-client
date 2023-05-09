@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { user } from "../../contexts/user";
 import { useTheme } from "../../contexts";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState(""); 
   const { username, setUsername, password, setPassword, email, setEmail } =
@@ -28,7 +31,7 @@ export default function Register() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const registeruser = async () => {
+    const registerUser = async () => {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -39,20 +42,21 @@ export default function Register() {
         }),
       };
 
-      const res = await fetch("http://localhost:4000/users/register", options);
+      const res = await fetch("http://127.0.0.1:4000/users/register/", options);
 
       if (res.ok) {
         console.log(`You have successfully signed up ${username}`);
-        window.location.assign("/users/login");
+        window.location.assign("/login");
       } else {
         console.log("error in signup");
       }
     };
 
     if (password !== confirmPassword) {
-      alert("Your passwords do not match");
+      toast.error("Your passwords did't match")
+      //alert("Your passwords do not match");
     } else {
-      registeruser();
+      registerUser();
     }
   }
 
@@ -83,6 +87,8 @@ export default function Register() {
                 <div className='mt-3'><a  href="/login">Have an account?</a></div>
           </div>
         </div>
+        <ToastContainer />
+
     </section>
   );
 }

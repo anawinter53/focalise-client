@@ -3,7 +3,6 @@ import { useTheme } from '../../contexts'
 import 'bootstrap/js/dist/dropdown'
 import { MusicPlayer } from "../../components/MusicPlayer"
 
-
 export default function Header() {
   const { theme, setTheme, themes } = useTheme()
   let th = 0

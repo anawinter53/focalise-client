@@ -17,13 +17,13 @@ export default function Time({handleTime}) {
                     <h1>Welcome to the sensory room!</h1><br/><h2>How long do you want to be here?</h2>
                     <div className="row justify-content-center p-5" style={{}}> 
                         <div className="col-3 m-1" >
-                            <button onClick={timeHandler} name='1' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>5 Minutes</button>
+                            <button onClick={timeHandler} name='1' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>5 Minutes</button>
                         </div>
                         <div className="col-3 m-1">
-                            <button onClick={timeHandler} name='10' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>10 Minutes</button>
+                            <button onClick={timeHandler} name='10' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>10 Minutes</button>
                         </div>
                         <div className="col-3 m-1">
-                            <button onClick={timeHandler} name='15' className='btn' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>15 Minutes</button>
+                            <button onClick={timeHandler} name='15' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>15 Minutes</button>
                         </div>
                     </div>
                 </div>            
