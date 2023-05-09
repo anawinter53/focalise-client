@@ -43,7 +43,7 @@ export default function Register() {
 
       if (res.ok) {
         console.log(`You have successfully signed up ${username}`);
-        window.location.assign("/users/login");
+        window.location.assign("/login");
       } else {
         console.log("error in signup");
       }
