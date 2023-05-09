@@ -4,6 +4,7 @@ import Select from 'react-select';
 import rainforest from './Rainforest-sounds.mp3';
 import morning from './Morning-sounds.mp3';
 import rainfall from './Rainfall.mp3'
+import './MusicPlayer.css'
 
 export const MusicPlayer = () => {
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -94,7 +95,7 @@ export const MusicPlayer = () => {
   }, []);
 
   return (
-    <div>
+    <div className='selector'>
       <Select
         options={tracks.map((track) => ({
           value: track.id,
@@ -102,7 +103,7 @@ export const MusicPlayer = () => {
         }))}
         onChange={playTrack}
       />
-      <button onClick={pauseTrack} disabled={isPaused ? true : false}>Pause</button>
+      <button className='pauseButton' onClick={pauseTrack} disabled={isPaused ? true : false}>Pause</button>
     </div>
   );
 };
