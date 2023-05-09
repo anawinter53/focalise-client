@@ -7,6 +7,7 @@ import * as Constant from '../../constants'
 
 export default function SensoryPage() {
     const { theme } = useTheme();
+    const [id, setId] = useTheme('')
     const [category, setCategory] = useState('')
     const [tasks, setTasks] = useState('')
     const [render, setRender] = useState()
@@ -14,40 +15,25 @@ export default function SensoryPage() {
     useEffect(() => {
         const user_id = localStorage.getItem("user_id");
         if (user_id) {
-          setBackgroundColor(savedColor);
+          setId(user_id);
         }
-        if (savedFontColor) {
-          handleFontColorChange(savedFontColor)
-        }
-        if (savedFontSize) {
-          handleFontResize(Number(savedFontSize))
+        const getCategory = async (user_id) => {
+            const res = await fetch( Constant.MAIN_URl + "tasks/${user_id}");
+            const data = await res.json();
+            setCategory(data.category_name);
+            console.log(category, data)
         }
       }, []);
 
-    // function handleCategory(category) {
-    //     setCategory(category)
-    //     setRender("category")
-    //     RenderView()
-    // }
+  
     function handleTasks(task) {
         getTasks(tasks)
         setRender("task")
         RenderView()
-    }
-    const getCategory = async (category) => {
-        const res = await fetch( Constant.MAIN_URl + "tasks/${user_id}");
-        const data = await res.json();
-        const rand = Math.floor(Math.random() * data.length)
-        const rand_data = data[rand]
-        setCategory(rand_data.category_name);
-        console.log(category, data)
-    }
-    const getTasks = async (tasks) => {
-          const res = await fetch( Constant.MAIN_URl + "tasks/${category}", options);
+    } 
+    const getTasks = async (category) => {
+          const res = await fetch(Constant.MAIN_URl + "tasks/${category}", options);
           const data = await res.json();
-          const rand = Math.floor(Math.random() * data.length)
-          const rand_data = data[rand]
-          setVideoLink(rand_data.video_url);
           console.log(videoLink, data)
     }
     function RenderTasksView() {

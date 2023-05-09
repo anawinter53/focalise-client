@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useTheme } from '../../contexts'
 
-export default function TasksPage({handleTime}) {
+export default function TasksPage({handleTasks}) {
     const { theme } = useTheme()
     function categoryHandler(e){
         e.preventDefault()
