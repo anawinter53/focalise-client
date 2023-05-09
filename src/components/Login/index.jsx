@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import "./login.css";
 import { useTheme } from "../../contexts";
 import { user } from "../../contexts/user";
+import axios from 'axios';
+
 
 export default function Login() {
-  const { id, setID, password, setPassword, username, setUsername, token, setToken } =
+  const { id, setID, password, setPassword, username, setUsername, token, setToken, email, setEmail } =
     user();
   const  { theme } = useTheme()
   const emailHandler = (e) => {
@@ -21,15 +23,16 @@ export default function Login() {
     const loginUser = async () => {
       const options = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ username: username, password: password }),
       };
       console.log(options)
-      const res = await fetch("http://localhost:4000/users/login/", options);
+      const res = await fetch("http://localhost:4000/users/login", options);
       const data = await res.json();
       setToken(data.token);
       setID(data.id)
-      console.log(token);
+      setEmail(data.useremail)
+      // console.log(data,'<-----');
     };
 
     loginUser();
@@ -39,6 +42,7 @@ export default function Login() {
     if (token) {
       localStorage.setItem("token", `${token}`);
       localStorage.setItem("username", `${username}`);
+      localStorage.setItem("useremail", `${email}`)
       localStorage.setItem("id", `${id}`);
       window.location.assign("/");
     }
@@ -48,7 +52,7 @@ export default function Login() {
   return (
     <section>
         <div id="login-page" className="d-flex justify-content-center align-items-center">
-          <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
+          <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`, color: `${theme.primText}`}}>
               <form>
                   <div className="mb-3">
                     <label htmlFor="Email1" className="form-label">Username</label>
