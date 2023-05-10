@@ -11,7 +11,7 @@ function App() {
       <Notifications />
       <Routes>
         <Route element={<Layouts.Header/>}>
-            <Route  path="/" element={<Pages.HomePage />}/>
+            <Route path="/" element={<Pages.HomePage />}/>
             <Route path='/sensory' element={<Pages.SensoryPage />}/>
             <Route path="/profile" element={<Pages.ProfilePage />}/>
             <Route path='/register' element={<Pages.RegisterPage />}/>
