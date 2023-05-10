@@ -7,6 +7,7 @@
   .link-button {
     margin-right: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #FFF0CA;
     padding: 10px;
     color: black;
@@ -26,5 +27,5 @@
   .title-heading {
     font-family: monospace;
     text-align: center;
-    margin-top: 190px;
+    margin-top: 180px;
   }
