@@ -7,26 +7,28 @@ import * as Constant from '../../constants'
 export default function TasksPage() {
     const { theme } = useTheme();
     const [id, setId] = useState('')
-    const [category, setCategory] = useState('')
+    const [categories, setCategories] = useState('')
     const [tasks, setTasks] = useState('')
     const [render, setRender] = useState()
 
     useEffect(() => {
         const user_id = localStorage.getItem("id");
-        console.log(id)
         if (user_id) {
           setId(user_id);
         }
-        async (user_id) => {
-            const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id);
-            const data = await res.json();
-            console.log(res)
-            setCategory(data.category_name);
-            
-        }
       }, []);
 
-  
+      useEffect(() => {
+        const getCategories = async (id) => {
+            console.log(id)
+            const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/categories");
+            const category_data = await res.json();
+            console.log(category_data)
+            setCategories(category_data)
+        }
+        getCategories(id)
+      }, [id]);
+
     function handleTasks(category) {
         getTasks(category)
         console.log(tasks)
@@ -45,7 +47,7 @@ export default function TasksPage() {
             return <Tasks tasks={tasks}/>
         }
         else {
-            return <Category handleTasks={handleTasks} />
+            return <Category handleTasks={handleTasks} categories={categories}/>
         }
     }
 
