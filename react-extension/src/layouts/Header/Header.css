@@ -25,3 +25,10 @@
   .nav-link:hover {
     color: #FFF0CA;
   }
+
+.navbar-brand {
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-top: 20px;
+}
