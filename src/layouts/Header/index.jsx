@@ -31,6 +31,9 @@ export default function Header() {
                 <a className="nav-link active" aria-current="page" href="/" style={{color: `${theme.primText}`}}>Home</a>
               </li>
               <li className="nav-item">
+                <a className="nav-link" href="/workplan" style={{color: `${theme.primText}`}}>Workplan</a>
+              </li>
+              <li className="nav-item">
                 <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
               </li>
             </ul>
