@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "../../contexts";
-import { User } from "../../contexts/user";
+import { useTheme, useUser } from "../../contexts";
 import './login.css'
 
 export default function Login() {
   const { id, setID, password, setPassword, username, setUsername, token, setToken } =
-  User();
+  useUser();
   const navigate = useNavigate();
   const  { theme } = useTheme();
 
