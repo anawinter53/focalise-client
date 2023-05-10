@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts";
 import { User } from "../../contexts/user";
-import "./login.css";
+import './login.css'
 
 export default function Login() {
   const { id, setID, password, setPassword, username, setUsername, token, setToken } =
@@ -48,24 +48,12 @@ export default function Login() {
   useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   return (
-    <section>
-    <div id="login-page" className="d-flex justify-content-center align-items-center">
-      <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
-          <form>
-              <div className="mb-3">
-                <label htmlFor="Email1" className="form-label">Username</label>
-                <input onChange={usernameHandler} type="text" placeholder="username" className="form-control" id="Email1" aria-describedby="emailHelp"/>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="Password1" className="form-label">Password</label>
-                <input  onChange={passwordHandler} placeholder="password" type="password" className="form-control" id="Password1"/>
-              </div>
-              <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
-            </form>
-            <div className='mt-3'><a  href="/register">Create Account</a></div>
-      </div>
-    </div>
-</section>
-    
+  <div id="login-page" className="login-page-body">
+    <form className="login-form">
+      <input onChange={usernameHandler} type="text" placeholder="username" className="input-box" id="Email1" aria-describedby="emailHelp"/>
+      <input  onChange={passwordHandler} placeholder="password" type="password" className="input-box" id="Password1"/>
+      <button onClick={handleSubmit} type="submit" className="submit-button">Submit</button>
+    </form>
+  </div>
   );
 }
