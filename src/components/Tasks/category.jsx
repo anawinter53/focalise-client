@@ -9,12 +9,11 @@ export default function CategoryPage({handleTasks, categories}) {
     }
     useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
-  return (
+    return (
     <div>
-      <section id="select-task-category" style={{height: '100vh'}}>
+        <section id="select-task-category" style={{height: '100vh'}}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
                 <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
-                    
                     <h1>Ready to get started on some tasks?</h1><br/><h2>Here are your categories:</h2>
                     <div className="row justify-content-center p-5" style={{}}>  
                         {categories ? categories.map((category, i) => (
@@ -28,5 +27,6 @@ export default function CategoryPage({handleTasks, categories}) {
             </div>
             </section>
     </div>
-  )
+    )
 }
+
