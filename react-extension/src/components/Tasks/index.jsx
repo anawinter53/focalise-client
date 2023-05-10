@@ -25,7 +25,7 @@ export default function Tasks() {
       <table>
       {(tasks) ? 
         tasks.map((task, i) => (
-          <tr key={i}>
+          <tr className="table-row" key={i}>
             <td>{task.category_name}</td>
             <td>{task.task_desc}</td>
             <td>{task.task_deadline}</td>
