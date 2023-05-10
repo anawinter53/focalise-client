@@ -33,6 +33,9 @@ export default function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="/tasks" style={{color: `${theme.primText}`}}>Tasks</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/workplan" style={{color: `${theme.primText}`}}>Workplan</a>
+              </li>
             </ul>
             <span className="navbar-text">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">

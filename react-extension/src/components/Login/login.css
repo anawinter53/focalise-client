@@ -1,0 +1,44 @@
+.login-page-body {
+    margin-top: 50px;
+    text-align: center;
+    background-color: #FFF0CA;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .input-box {
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: monospace;
+  }
+  
+  .submit-button {
+    margin: 0 auto;
+    display: block;
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #FFF0CA;
+    border: 3px solid black;
+    color: black;
+    font-family: monospace;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .submit-button:hover {
+    transform: scale(1.05);
+    background-color: black;
+    color: #FFF0CA;
+  }
+
+

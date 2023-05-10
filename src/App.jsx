@@ -19,7 +19,7 @@ function App() {
             <Route path='/logout' element={<Pages.LogoutPage />}/>
             <Route path='/bodydouble' element={<Pages.BodyDouble />}/>
             <Route path='/tasks' element={<Pages.TasksPage />}/>
-            <Route path='/notifications' element={<Pages.NotificationPage />}/>
+            <Route path='/workplan' element={<Pages.NotificationPage />}/>
         </Route>
       </Routes>
     </UserProvider>
