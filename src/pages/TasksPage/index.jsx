@@ -11,11 +11,12 @@ export default function TasksPage() {
     const [tasks, setTasks] = useState('')
     const [render, setRender] = useState()
 
-    useEffect(() => {
-        const user_id = localStorage.getItem("id");
-        if (user_id) {
-          setId(user_id);
+    useEffect( () => {
+        const getId = () => {
+            const user_id = localStorage.getItem("id");
+            user_id ? setId(user_id) : undefined
         }
+        getId()
       }, []);
 
       useEffect(() => {
@@ -38,16 +39,15 @@ export default function TasksPage() {
     const getTasks = async (category) => {
           const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/" + category);
           const data = await res.json();
-          setTasks(data.task_name)
-          console.log(data)
+          setTasks(data)
     }
     function RenderTasksView() {
 
         if (render === 'tasks') {
-            return <Tasks tasks={tasks}/>
+            return <Tasks tasks={tasks} setRender={setRender} />
         }
         else {
-            return <Category handleTasks={handleTasks} categories={categories}/>
+            return <Category handleTasks={handleTasks} categories={categories} />
         }
     }
 

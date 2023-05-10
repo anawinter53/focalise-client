@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 import { useTheme } from '../../contexts'
+import { useNavigate } from "react-router-dom"
 
-export default function TasksPage({tasks}) {
+export default function TasksPage({tasks, setRender}) {
     const { theme } = useTheme()
-    function categoryHandler(e){
-        e.preventDefault()
-        tasks(e.target.name)
-    }
+    const navigate = useNavigate()
     useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   return (
@@ -14,19 +12,17 @@ export default function TasksPage({tasks}) {
       <section id="select-task-category" style={{height: '100vh'}}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
                 <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
-                    <button>Back</button>
-                    <button>Add Task</button>
-                    {/* <div className="row justify-content-center p-5" style={{}}> 
-                        <div className="col-3 m-1" >
-                            <button onClick={categoryHandler} name='1' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Python</button>
-                        </div>
-                        <div className="col-3 m-1">
-                            <button onClick={categoryHandler} name='10' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Django</button>
-                        </div>
-                        <div className="col-3 m-1">
-                            <button onClick={categoryHandler} name='15' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Design</button>
-                        </div>
-                    </div> */}
+                    <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('')}>Back</button>
+                    <button className="btn btn-danger position-absolute top-0 end-0">Add Task</button>
+                    <div className="row justify-content-center p-5" style={{}}>  
+                        {tasks ? tasks.map((task, i) => (
+                            <div key={i} >
+                            {console.log(task.task_name)}
+                            <h1 name={task.task_name} >{task.task_name}</h1><br></br><h2 name={task.task_desc} >{task.task_desc}</h2>
+                            </div>
+                        )) : undefined
+                        }   
+                    </div>
                 </div>            
             </div>
             </section>

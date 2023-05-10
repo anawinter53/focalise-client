@@ -28,10 +28,10 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/" style={{color: `${theme.primText}`}}>Home</a>
+                <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
+                <a className="nav-link" href="/tasks" style={{color: `${theme.primText}`}}>Tasks</a>
               </li>
             </ul>
             <span className="navbar-text">
@@ -40,9 +40,6 @@ export default function Header() {
                 <MusicPlayer />
               </li>
             <li className="nav-item dropdown">
-                <a className="nav-link" href="#" style={{color: `${theme.primText}`}} role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
-                  Change Theme
-                </a>
                 {/* <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
                   Select Theme
                 </a> */}
