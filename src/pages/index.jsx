@@ -1,0 +1,8 @@
+export {default as HomePage} from './HomePage'
+export {default as LoginPage} from './LoginPage'
+export {default as RegisterPage} from './RegisterPage'
+export {default as SensoryPage} from './SensoryPage'
+export {default as ProfilePage} from './ProfilePage'
+export {default as LogoutPage} from './LogoutPage'
+export {default as BodyDouble} from './BodyDouble'
+export {default as NotificationPage} from './NotificationPage'

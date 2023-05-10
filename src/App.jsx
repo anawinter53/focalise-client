@@ -1,11 +1,29 @@
-import './App.css'
+import * as Pages from './pages'
+import {Routes, Route} from 'react-router-dom'
+import * as Layouts from './layouts'
+import { UserProvider } from "./contexts/user";
+import { Notifications } from 'react-push-notification';
 
 function App() {
+
   return (
-    <>
-      <h1>I Am The Walrus</h1>
-    </>
+    <UserProvider>
+      <Notifications />
+      <Routes>
+        <Route element={<Layouts.Header/>}>
+            <Route  path="/" element={<Pages.HomePage />}/>
+            <Route path='/sensory' element={<Pages.SensoryPage />}/>
+            <Route path="/profile" element={<Pages.ProfilePage />}/>
+            <Route path='/register' element={<Pages.RegisterPage />}/>
+            <Route path='/login' element={<Pages.LoginPage />}/>
+            <Route path='/logout' element={<Pages.LogoutPage />}/>
+            <Route path='/bodydouble' element={<Pages.BodyDouble />}/>
+            <Route path='/notifications' element={<Pages.NotificationPage />}/>
+        </Route>
+      </Routes>
+    </UserProvider>
   )
 }
 
 export default App
+
