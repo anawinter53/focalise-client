@@ -59,34 +59,34 @@ export default function ProfilePage() {
   function handleSubmit(e) {
     e.preventDefault()
     updateUser()
-    console.log('---->>>>',backgroundColor, fontColor, fontSize, username,email)
+    console.log('---->>>>', backgroundColor, fontColor, fontSize, username, email)
 
   }
   const updateUser = async () => {
     const options = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-            username: username, email: email
-        }),
-      };
-      console.log(options, Constant.MAIN_URl + `users/${localStorage.id}/`)
-      const res = await fetch( Constant.MAIN_URl + `users/${localStorage.id}`, options);
-      const data = await res.json();
-      console.log(data)
-      localStorage.setItem("username", data.username)
-      localStorage.setItem("userEmail", data.userEmail)
-      toast.success(data.message)
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username, email: email
+      }),
+    };
+    console.log(options, Constant.MAIN_URl + `users/${localStorage.id}/`)
+    const res = await fetch(Constant.MAIN_URl + `users/${localStorage.id}`, options);
+    const data = await res.json();
+    console.log(data)
+    localStorage.setItem("username", data.username)
+    localStorage.setItem("userEmail", data.userEmail)
+    toast.success(data.message)
 
-  }    
-  function handleInput(e){
-      e.preventDefault()
-      if (e.target.id === 'usernameInput') {
-          SetUsername(e.target.value)
-      }
-      else {
-          setEmail(e.target.value)
-      }
+  }
+  function handleInput(e) {
+    e.preventDefault()
+    if (e.target.id === 'usernameInput') {
+      SetUsername(e.target.value)
+    }
+    else {
+      setEmail(e.target.value)
+    }
   }
   return (
 
@@ -98,7 +98,7 @@ export default function ProfilePage() {
               <div className="card-body text-center">
                 <div className="mt-3 mb-4">
                   {selectedImage ? (
-                    <img className="rounded-circle img-fluid" style={{ width: "100px;" }}
+                    <img className="img-fluid" style={{ maxWidth: "128px", maxHeight: "128px"}}
                       src={selectedImage}
                       alt="Your Image"
 
@@ -107,10 +107,24 @@ export default function ProfilePage() {
                     <img
                       src="https://img.icons8.com/bubbles/256/null/gender-neutral-user.png"
                       alt="Placeholder Image"
-                      className="rounded-circle img-fluid"
+                      className="img-fluid"
                     />
                   )}
-                  <button className="btn" style={{  backgroundColor: theme.accentColor}} onClick={handleImageSelect}>Edit Picture</button>
+                  <div className="">
+                    <ImageSelector
+                      onSelect={handleImageSelect}
+                      image1="https://img.icons8.com/color/256/null/user-male-circle--v1.png"
+                      image2="https://img.icons8.com/bubbles/256/null/user-male-circle.png"
+                      image3="https://img.icons8.com/color/256/null/user-female-circle--v1.png"
+                      image4="https://img.icons8.com/clouds/256/null/user-female-circle.png"
+                      image5="https://img.icons8.com/emoji/256/null/cat-emoji.png"
+                      image6="https://img.icons8.com/emoji/256/null/smiling-cat-with-heart-eyes.png"
+                      image7="https://img.icons8.com/bubbles/256/null/walrus.png"
+                      image8="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/256/null/external-walrus-animal-flaticons-lineal-color-flat-icons-3.png"
+
+                    />
+                  </div>
+                  {/* <button className="btn" style={{ backgroundColor: theme.accentColor }} onClick={handleImageSelect}>Edit Picture</button> */}
 
                 </div>
                 <h4 className="mb-2">{username}</h4>
@@ -157,7 +171,7 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </section >
     // <div classNameName="profile-page-body" style={{backgroundColor, color: fontColor, fontSize}}>
     //   <h1 classNameName="text-center mt-5">Profile</h1>
