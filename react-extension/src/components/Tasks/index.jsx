@@ -1,9 +1,9 @@
-import { User } from "../../contexts/user";
+import { useUser } from "../../contexts";
 import { useEffect, useState } from "react";
 import "./tasks.css";
 
 export default function Tasks() {
-  const { id } = User();
+  const { id } = useUser();
   const [tasks, setTasks] = useState([])
 
   const getTasks = async () => {
