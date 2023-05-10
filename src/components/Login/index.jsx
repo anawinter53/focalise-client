@@ -3,6 +3,7 @@ import "./login.css";
 import { useTheme } from "../../contexts";
 import { user } from "../../contexts/user";
 import axios from 'axios';
+import * as Constant from '../../constants'
 
 
 export default function Login() {
@@ -27,11 +28,11 @@ export default function Login() {
         body: JSON.stringify({ username: username, password: password }),
       };
       console.log(options)
-      const res = await fetch("http://localhost:4000/users/login", options);
+      const res = await fetch(Constant.MAIN_URl + "users/login", options);
       const data = await res.json();
       setToken(data.token);
       setID(data.id)
-      setEmail(data.useremail)
+      setEmail(data.userEmail)
       // console.log(data,'<-----');
     };
 
@@ -42,7 +43,7 @@ export default function Login() {
     if (token) {
       localStorage.setItem("token", `${token}`);
       localStorage.setItem("username", `${username}`);
-      localStorage.setItem("useremail", `${email}`)
+      localStorage.setItem("userEmail", `${email}`)
       localStorage.setItem("id", `${id}`);
       window.location.assign("/");
     }

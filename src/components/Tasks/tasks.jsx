@@ -1,0 +1,31 @@
+import { useEffect } from 'react'
+import { useTheme } from '../../contexts'
+import { useNavigate } from "react-router-dom"
+
+export default function TasksPage({tasks, setRender}) {
+    const { theme } = useTheme()
+    const navigate = useNavigate()
+    useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
+
+  return (
+    <div>
+      <section id="select-task-category" style={{height: '100vh'}}>
+            <div className="d-flex aligns-items-center justify-content-center position-relative">
+                <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
+                    <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('')}>Back</button>
+                    <button className="btn btn-danger position-absolute top-0 end-0">Add Task</button>
+                    <div className="row justify-content-center p-5" style={{}}>  
+                        {tasks ? tasks.map((task, i) => (
+                            <div key={i} >
+                            {console.log(task.task_name)}
+                            <h1 name={task.task_name} >{task.task_name}</h1><br></br><h2 name={task.task_desc} >{task.task_desc}</h2>
+                            </div>
+                        )) : undefined
+                        }   
+                    </div>
+                </div>            
+            </div>
+            </section>
+    </div>
+  )
+}

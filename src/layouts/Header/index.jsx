@@ -16,8 +16,6 @@ export default function Header() {
       setTheme(themes.theme2)
     }
     console.log("clicked", th, theme)
-
-
   }
   return (
     <>
@@ -30,21 +28,21 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/" style={{color: `${theme.primText}`}}>Home</a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
               </li>
-              <li>
-                <MusicPlayer />
+              <li className="nav-item">
+                <a className="nav-link" href="/tasks" style={{color: `${theme.primText}`}}>Tasks</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/workplan" style={{color: `${theme.primText}`}}>Workplan</a>
               </li>
             </ul>
             <span className="navbar-text">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+            <li>
+                <MusicPlayer />
+              </li>
             <li className="nav-item dropdown">
-                <a className="nav-link" href="#" style={{color: `${theme.primText}`}} role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
-                  Change Theme
-                </a>
                 {/* <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
                   Select Theme
                 </a> */}
