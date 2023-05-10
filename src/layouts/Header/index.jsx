@@ -21,7 +21,7 @@ export default function Header() {
     <>
       <nav className="navbar sticky-top navbar-expand-lg" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`}}>
         <div className="container">
-          <a className="navbar-brand" href="/" style={{color: `${theme.primText}`}}>F O C A L I S E</a>
+          <a className="navbar-brand" href={localStorage.getItem('token') ? '/' : '/landing'} style={{color: `${theme.primText}`}}>F O C A L I S E</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
