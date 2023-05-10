@@ -1,0 +1,30 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .link-button {
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: #FFF0CA;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    border: 3px solid black;
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  .link-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: black;
+    color: #FFF0CA;
+  }
+
+  .title-heading {
+    font-family: monospace;
+    text-align: center;
+    margin-top: 190px;
+  }

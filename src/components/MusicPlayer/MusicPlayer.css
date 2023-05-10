@@ -1,0 +1,11 @@
+.selector {
+        display: flex;
+        align-items: center;
+}
+
+.pauseButton {
+    height: auto;
+    width: auto;
+    border-radius: 5px;
+}
+

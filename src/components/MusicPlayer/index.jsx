@@ -4,11 +4,11 @@ import Select from 'react-select';
 import rainforest from './Rainforest-sounds.mp3';
 import morning from './Morning-sounds.mp3';
 import rainfall from './Rainfall.mp3'
-
+import { useTheme } from '../../contexts';
 export const MusicPlayer = () => {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPaused, setIsPaused] = useState(false); // new state variable
-
+  const {theme} = useTheme()
   const tracks = [
     {
       id: 'rainforest',
@@ -94,7 +94,7 @@ export const MusicPlayer = () => {
   }, []);
 
   return (
-    <div>
+    <div className='d-flex rounded border me-2' style={{backgroundColor: `${theme.accentColor}`}}>
       <Select
         options={tracks.map((track) => ({
           value: track.id,
@@ -102,7 +102,7 @@ export const MusicPlayer = () => {
         }))}
         onChange={playTrack}
       />
-      <button onClick={pauseTrack} disabled={isPaused ? true : false}>Pause</button>
+      <button className='btn border-0'  onClick={pauseTrack} disabled={isPaused ? true : false}>Stop</button>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { useTheme } from '../../contexts/themes'
-import '../SensoryPage/index.css'
 import 'animate.css';
 import { Time, Type, Video } from '../../components';
 import { useState } from 'react';
@@ -33,12 +32,12 @@ export default function SensoryPage() {
     }
     const getSensoryVideos = async (type) => {
         const options = {
-            method: "POST",
+            method: "GET",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ "video_category": `${type}` }),
           };
           console.log(options)
-          const res = await fetch( Constant.MAIN_URl + "sensory/", options);
+          const res = await fetch( Constant.MAIN_URl + "sensory/" + type);
           const data = await res.json();
           //random
           const rand = Math.floor(Math.random() * data.length)
@@ -63,8 +62,6 @@ export default function SensoryPage() {
         <div style={{ backgroundColor: `${theme.primColor}` }}>
 
             <RenderView/>
-
-
             {/* <section id="select-time" style={{height: '100vh'}}>
             <div className="d-flex aligns-items-center justify-content-center p-5">
                 <div className="container text-center m-5 py-5 shadow rounded" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`}}>
