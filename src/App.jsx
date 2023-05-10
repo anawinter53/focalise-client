@@ -11,7 +11,7 @@ function App() {
       <Notifications />
       <Routes>
         <Route element={<Layouts.Header/>}>
-            <Route path="/" element={<Pages.HomePage />}/>
+            <Route path="/" element={localStorage.getItem('token') ? <Pages.HomePage /> : <Pages.HomePageNLI />}/>
             <Route path='/sensory' element={<Pages.SensoryPage />}/>
             <Route path="/profile" element={<Pages.ProfilePage />}/>
             <Route path='/register' element={<Pages.RegisterPage />}/>
@@ -20,7 +20,6 @@ function App() {
             <Route path='/bodydouble' element={<Pages.BodyDouble />}/>
             <Route path='/tasks' element={<Pages.TasksPage />}/>
             <Route path='/workplan' element={<Pages.NotificationPage />}/>
-            <Route path="/landing" element={<Pages.HomePageNLI />}/>
         </Route>
       </Routes>
     </UserProvider>

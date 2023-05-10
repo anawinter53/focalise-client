@@ -43,7 +43,7 @@
   }
   
   .card {
-    background-color: #fff;
+    background-color: #D17B88;
     border-radius: 5px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     width: 40%;
@@ -52,15 +52,26 @@
     height: 300px;
   }
 
+  .card:hover {
+    transform: scale(1.05);
+    background-color: white;
+  }
+
 #more-info {
     margin-top: 200px;
 }
 
 .login-button {
-    background-color: #D17B88;
+    background-color: white;
     padding: 15px;
     border: 3px solid white;
     border-radius: 5px;
+    color: #D17B88;
+}
+
+.login-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .login-button-link {
@@ -68,5 +79,7 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
+    color: #D17B88;
 }
+
 
