@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="navbar sticky-top navbar-expand-lg" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`}}>
+      <nav className="navbar sticky-top navbar-expand-lg" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, padding: '10px'}}>
         <div className="container">
           <a className="navbar-brand" style={{color: `${theme.primText}`, fontSize: '15px', fontWeight: 'bold'}}>F  O C A L I S E</a>
             <span className="navbar-text">
