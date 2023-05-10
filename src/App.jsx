@@ -20,6 +20,7 @@ function App() {
             <Route path='/bodydouble' element={<Pages.BodyDouble />}/>
             <Route path='/tasks' element={<Pages.TasksPage />}/>
             <Route path='/workplan' element={<Pages.NotificationPage />}/>
+            <Route path="/landing" element={<Pages.HomePageNLI />}/>
         </Route>
       </Routes>
     </UserProvider>
