@@ -16,8 +16,6 @@ export default function Header() {
       setTheme(themes.theme2)
     }
     console.log("clicked", th, theme)
-
-
   }
   return (
     <>
@@ -35,12 +33,12 @@ export default function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
               </li>
-              <li>
-                <MusicPlayer />
-              </li>
             </ul>
             <span className="navbar-text">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+            <li>
+                <MusicPlayer />
+              </li>
             <li className="nav-item dropdown">
                 <a className="nav-link" href="#" style={{color: `${theme.primText}`}} role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={handleTheme}>
                   Change Theme
