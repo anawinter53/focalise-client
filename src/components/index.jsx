@@ -6,5 +6,7 @@ export { default as Video} from './Sensory/video'
 export { default as TimeUpModal } from "./TimeUpModal"
 export { default as Category} from "./Tasks/category"
 export { default as Tasks} from "./Tasks/tasks"
+export { default as AddCategory} from "./Tasks/addCategory"
+export { default as AddTaskModal} from "./AddTaskModal"
 
 
