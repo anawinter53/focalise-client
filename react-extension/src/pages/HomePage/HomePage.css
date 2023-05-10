@@ -29,6 +29,7 @@
     color: black;
     font-weight: bold;
     font-family: monospace;
+    font-size: 15px;
 }
 
 .login-link:hover {
