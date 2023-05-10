@@ -14,9 +14,8 @@ export default function ProfilePage() {
   const [selectedImage, setSelectedImage] = useState(
     localStorage.getItem("profileImage") || null
   );
-  console.log('----->>>>>', localStorage)
-  const { theme } = useTheme()
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const { theme, setTheme, themes } = useTheme({})
+  const [localColor, setLocalColor] = useState('');
   const [fontColor, setFontColor] = useState('')
   const [fontSize, setFontSize] = useState('')
   const [username, SetUsername] = useState(localStorage.username)
@@ -32,7 +31,7 @@ export default function ProfilePage() {
     const savedFontColor = localStorage.getItem('fontColor')
     const savedFontSize = localStorage.getItem('fontSize')
     if (savedColor) {
-      setBackgroundColor(savedColor);
+      setLocalColor(savedColor);
     }
     if (savedFontColor) {
       handleFontColorChange(savedFontColor)
@@ -43,8 +42,10 @@ export default function ProfilePage() {
   }, []);
 
   const handleBackgroundColorChange = (color) => {
-    setBackgroundColor(color);
+    setLocalColor([localStorage.getItem('userTheme')]);
     localStorage.setItem("backgroundColor", color);
+    localStorage.setItem('userTheme', color)
+    setTheme(themes[color])
   }
 
   const handleFontColorChange = (color) => {
@@ -57,10 +58,16 @@ export default function ProfilePage() {
     localStorage.setItem('fontSize', size)
   }
   function handleSubmit(e) {
-    e.preventDefault()
-    updateUser()
-    console.log('---->>>>', backgroundColor, fontColor, fontSize, username, email)
-
+    if (e.target.id === 'btnSubmit') {
+      e.preventDefault()
+      updateUser()
+      setTheme(themes[localStorage.getItem('userTheme')])
+      console.log('---->>>>',localStorage.getItem('userTheme') )
+    }
+    else {
+      setTheme(themes[localColor])
+    }
+    
   }
   const updateUser = async () => {
     const options = {
@@ -70,10 +77,9 @@ export default function ProfilePage() {
         username: username, email: email
       }),
     };
-    console.log(options, Constant.MAIN_URl + `users/${localStorage.id}/`)
     const res = await fetch(Constant.MAIN_URl + `users/${localStorage.id}`, options);
     const data = await res.json();
-    console.log(data)
+    //console.log(data)
     localStorage.setItem("username", data.username)
     localStorage.setItem("userEmail", data.userEmail)
     toast.success(data.message)
@@ -145,7 +151,6 @@ export default function ProfilePage() {
                 <input onChange={handleInput} className="form-control" type='email' id="emailInput" value={email}></input>
               </div>
               <ColourChanger onColorChange={handleBackgroundColorChange} />
-              <FontColourChanger onFontChange={handleFontColorChange} />
               <FontResize onFontResize={handleFontResize} />
               <button type="" className="btn mb-3" data-bs-toggle="modal" data-bs-target="#saveSettings" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Save Settings</button>
             </div>
@@ -157,7 +162,7 @@ export default function ProfilePage() {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="saveSettingsLabel">Account Settings</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" onClick={handleSubmit} id='btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <div className="mb-3">
