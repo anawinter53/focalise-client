@@ -21,7 +21,7 @@ export default function Tasks() {
   
   return (
     <>
-      <h2>Consider focusing on your three most urgent tasks today:</h2>
+      <h2 className="page-title" style={{textAlign: 'center'}}>Consider focusing on your three most urgent tasks today: </h2>
       <table>
       {(tasks) ? 
         tasks.map((task, i) => (

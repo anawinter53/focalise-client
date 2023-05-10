@@ -1,7 +1,6 @@
 import { Outlet, Link } from "react-router-dom"
 import { useTheme, useUser } from '../../contexts'
-import 'bootstrap/js/dist/dropdown'
-
+import './Header.css'
 
 export default function Header() {
   const { theme, themes } = useTheme()
@@ -9,17 +8,12 @@ export default function Header() {
 
   return (
     <>
-      <nav className="navbar sticky-top navbar-expand-lg" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, padding: '10px'}}>
+      <nav className="navbar sticky-top navbar-expand-lg" style={{padding: '10px'}}>
         <div className="container">
-          <a className="navbar-brand" style={{color: `${theme.primText}`, fontSize: '15px', fontWeight: 'bold'}}>F  O C A L I S E</a>
-            <span className="navbar-text">
-            <ul style={{listStyleType: "none"}} className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
-              {token || localStorage.token ? <><li className="nav-item"><a className="nav-link" style={{color: `${theme.primText}`}}><Link to={"/logout"}>Logout</Link></a></li></> : <></>}
-            </ul>
-            </span>  
+          <a className="navbar-brand" style={{fontSize: '15px', fontWeight: 'bold'}}>F  O C A L I S E</a>
+              {token || localStorage.token ? <><button className="nav-item"><a className="nav-link"><Link className="nav-link" to={"/logout"}>Logout</Link></a></button></> : <></>}
         </div>
       </nav>
-
     <Outlet/>
     </>
   )
