@@ -5,7 +5,7 @@ import { Category, Tasks } from '../../components';
 import { useState } from 'react';
 import * as Constant from '../../constants'
 
-export default function SensoryPage() {
+export default function TasksPage() {
     const { theme } = useTheme();
     const [id, setId] = useTheme('')
     const [category, setCategory] = useState('')
@@ -17,8 +17,8 @@ export default function SensoryPage() {
         if (user_id) {
           setId(user_id);
         }
-        const getCategory = async (user_id) => {
-            const res = await fetch( Constant.MAIN_URl + "tasks/${user_id}");
+        async (user_id) => {
+            const res = await fetch(Constant.MAIN_URl + "tasks/" + user_id);
             const data = await res.json();
             setCategory(data.category_name);
             console.log(category, data)
@@ -27,13 +27,14 @@ export default function SensoryPage() {
 
   
     function handleTasks(task) {
-        getTasks(tasks)
+        getTasks(category)
         setRender("task")
         RenderView()
     } 
     const getTasks = async (category) => {
-          const res = await fetch(Constant.MAIN_URl + "tasks/${category}", options);
+          const res = await fetch(Constant.MAIN_URl + "tasks/" + category);
           const data = await res.json();
+          setTasks(data.task_name)
           console.log(videoLink, data)
     }
     function RenderTasksView() {
