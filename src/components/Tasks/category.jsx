@@ -17,13 +17,13 @@ export default function CategoryPage({handleTasks}) {
                     <h1>Ready to get started on some tasks?</h1><br/><h2>Here are your categories:</h2>
                     <div className="row justify-content-center p-5" style={{}}> 
                         <div className="col-3 m-1" >
-                            <button onClick={tasksHandler} name='1' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Python</button>
+                            <button onClick={tasksHandler} name='Python' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Python</button>
                         </div>
                         <div className="col-3 m-1">
-                            <button onClick={tasksHandler} name='10' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Django</button>
+                            <button onClick={tasksHandler} name='Django' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Django</button>
                         </div>
                         <div className="col-3 m-1">
-                            <button onClick={tasksHandler} name='15' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Design</button>
+                            <button onClick={tasksHandler} name='Design' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Design</button>
                         </div>
                     </div>
                 </div>            
