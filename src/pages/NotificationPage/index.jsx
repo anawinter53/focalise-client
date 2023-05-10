@@ -2,6 +2,8 @@ import addNotification from 'react-push-notification'
 import { Notifications} from 'react-push-notification'
 import { useEffect, useState } from 'react'
 import './NotificationPage.css'
+import { CategoryChoice, TaskChoice } from '../../components'
+import * as Constant from '../../constants'
 
 function NotificationPage() {
 
@@ -11,6 +13,30 @@ function NotificationPage() {
     const [breakTimer, setBreakTimer] = useState(null)
     const [deadline, setDeadline] = useState("00:00")
     const [time, setTime] = useState("00:00")
+    const [tasks, setTasks] = useState([])
+    const [taskId, setTaskId] = useState({})
+    const [categories, setCategories] = useState('')
+    const [render, setRender] = useState('')
+    const [id, setId] = useState()
+
+    useEffect( () => {
+        const getId = () => {
+            const user_id = localStorage.getItem("id");
+            user_id ? setId(user_id) : undefined
+        }
+        getId()
+      }, []);
+
+    useEffect(() => {
+        const getCategories = async (id) => {
+            console.log(id)
+            const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/categories");
+            const category_data = await res.json();
+            console.log(category_data)
+            setCategories(category_data)
+        }
+        getCategories(id)
+      }, [id]);
 
     useEffect(() => {
         let interval
@@ -22,6 +48,9 @@ function NotificationPage() {
         if (countDown === 0) {
             sendWorkFinishedNotification()
             setCountDown(null)
+            if (taskId) {
+                updateTask()
+            }
         }
     
         return () => {
@@ -142,6 +171,43 @@ function NotificationPage() {
       }, [time]);
 
 
+    const handleTasks = (category) => {
+        getTasks(category)
+        console.log(tasks)
+        setRender("tasks")
+    }
+
+    const getTasks = async (category) => {
+        // const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/" + category + "/Not Started");
+        const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/status/Not Started")
+        const data = await res.json();
+        setTasks(data)
+    }
+
+
+    const RenderPopup = () => {
+        if (render === 'categories') {
+            return <CategoryChoice handleTasks={handleTasks} categories={categories}/>
+        } else if (render === 'tasks') {
+            return <TaskChoice tasks={tasks} setRender={setRender} setTaskId={setTaskId} />
+        }
+    }
+
+    const updateTask = async () => {
+        const task = tasks.find(t => t.id = taskId)
+        const options = {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: "In Progress"})
+        }
+        const res = await fetch(Constant.MAIN_URl + "tasks/" + taskId, options)
+        const data = await res.json()
+        console.log(data)
+    }
+
+
+
+
     return <div className='notification'>
         <h1>Workplans page</h1>
         <button onClick={() => setCountDown(10)}>10 Second countdown</button>
@@ -159,6 +225,7 @@ function NotificationPage() {
             <div className='get-started'>
                 <h2>Get started on a task</h2>
                 <p>Getting started is one of the hardest things. Set a timer for just to ten minutes and get one going.</p>
+                <button onClick={() => setRender('categories')}>Choose task</button>
                 <button onClick={handleStartingSubmit}>Start</button>
             </div>
             <div className='work-session'>
@@ -177,6 +244,8 @@ function NotificationPage() {
                 </form>
             </div>
         </div>
+        <RenderPopup />
+        <button onClick={updateTask}>Update</button>
     </div>
 }
 
