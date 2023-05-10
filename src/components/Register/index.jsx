@@ -41,8 +41,8 @@ export default function Register() {
           password: password,
         }),
       };
-
-      const res = await fetch("http://127.0.0.1:4000/users/register/", options);
+      console.log(options)
+      const res = await fetch("http://127.0.0.1:4000/users/register", options);
 
       if (res.ok) {
         console.log(`You have successfully signed up ${username}`);

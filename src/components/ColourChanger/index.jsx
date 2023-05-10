@@ -17,9 +17,9 @@ export default function ColourChanger (props) {
       ];
      
   return (
-    <div>
-        <label htmlFor='colour-dropdown'>Choose background colour</label>
-        <Select className="colour-dropdown" options={colorOptions} onChange={handleColorChange}/>
+    <div className='mb-3'>
+        <label htmlFor='colour-dropdown' className='form-label'>Choose background colour</label>
+        <Select className="colour-dropdown form-control" options={colorOptions} onChange={handleColorChange}/>
     </div>
   )
 }
