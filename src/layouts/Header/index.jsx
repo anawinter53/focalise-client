@@ -39,14 +39,14 @@ export default function Header() {
               {localStorage.token ? 
                 <>
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
-                  <li className="nav-item">
-                <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
-              </li>
               <li className="nav-item">
                 <a className="nav-link" href="/tasks" style={{color: `${theme.primText}`}}>Tasks</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/workplan" style={{color: `${theme.primText}`}}>Workplan</a>
+              </li>
+                  <li className="nav-item">
+                <a className="nav-link" href="/sensory" style={{color: `${theme.primText}`}}>Sensory</a>
               </li>
                     <li className="nav-item">
                       <a className="nav-link" href="/profile" style={{color: `${theme.primText}`}}>Profile</a>
