@@ -1,16 +1,12 @@
-import { useUser } from "../../contexts";
 import { useEffect, useState } from "react";
 import "./tasks.css";
 
 export default function Tasks() {
-  const { id } = useUser();
   const [tasks, setTasks] = useState([])
 
   const getTasks = async () => {
-    console.log(id);
-    // const res = await fetch(`http://localhost:4000/tasks/user/${id}`);
-    //Temporarily coding the user ID to 1 because my username doesn't have any tasks
-    const res = await fetch(`https://focalise-backend.onrender.com/tasks/user/1`);
+    const id = localStorage.id
+    const res = await fetch(`https://focalise-backend.onrender.com/tasks/user/${id}`);
     const data = await res.json();
     setTasks(data)
   };
@@ -18,21 +14,35 @@ export default function Tasks() {
   useEffect(() => {
     getTasks()
   }, []);
+
+  const convertDate = (pythonDate) => {
+    const date = new Date(pythonDate)
+    const day = date.getDate()
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const month = months[date.getMonth()]
+    const formattedDate = `${day} ${month}`
+    return formattedDate
+  }
   
   return (
     <>
-      <h2 className="page-title" style={{textAlign: 'center'}}>Consider focusing on your three most urgent tasks today: </h2>
-      <table>
-      {(tasks) ? 
-        tasks.map((task, i) => (
-          <tr className="table-row" key={i}>
-            <td>{task.category_name}</td>
-            <td>{task.task_desc}</td>
-            <td>{task.task_deadline}</td>
+      <h2 className="page-title" style={{textAlign: 'center'}}>Try focusing on your most urgent tasks today:</h2>
+        <table className="tbl-content">
+          <tr className="tbl-header">
+            <td>Category</td>
+            <td>Task</td>
+            <td>Due</td>
           </tr>
-        ))
-      : <></>}
-      </table>
+          {(tasks) ? 
+            tasks.map((task, i) =>  i < 3 && (
+              <tr className="table-row" key={i}>
+                <td>{task.category_name}</td>
+                <td style={{fontWeight: "bold"}}>{task.task_desc}</td>
+                <td style={{width: "14%"}}>{convertDate(task.task_deadline)}</td>
+              </tr>
+            ))
+          : <></>}
+          </table>
     </>
   )
 }

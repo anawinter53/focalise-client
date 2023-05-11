@@ -15,11 +15,11 @@ export default function Links() {
 
     return (
       <>
-        <h2 className="title-heading">Some shortcuts to your favourite Focalise pages:</h2>
+        <h2 className="title-heading">Your favourite Focalise pages:</h2>
         <div className="button-container">
-            <button onClick={openSensory} className="link-button">Sensory</button>
           <button onClick={openTasks} className="link-button">Tasks</button>
           <button onClick={openWorkspace} className="link-button">Workspace</button>
+          <button onClick={openSensory} className="link-button">Sensory</button>
         </div>
       </>
     );

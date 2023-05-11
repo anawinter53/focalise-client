@@ -8,7 +8,7 @@ export default function LoggedInPage() {
 
     useEffect(() => {
         const wait = async () => {
-            await delay(3000)
+            await delay(2000)
             navigate("/")
         }
         wait()
