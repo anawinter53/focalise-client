@@ -7,8 +7,14 @@ export default function TasksPage({tasks, setRender}) {
     const { theme } = useTheme()
     const [addModal, setAddModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
+    const [activeTask, setActiveTask] = useState({})
     const [completedTaskModal, setCompletedTaskModal] = useState(false)
-    useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
+    useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, [])
+
+    const selectTask = (task) => {
+        setEditModal(true)
+        setActiveTask(task)
+    }
 
   return (
     <div>
@@ -16,8 +22,7 @@ export default function TasksPage({tasks, setRender}) {
             <div className="d-flex aligns-items-center justify-content-center position-relative">
                 <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
                     <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('')}>Back</button>
-                    <button className="btn btn-danger position-absolute top-0 end-50" onClick={() => setAddModal(true)}>Add Task</button>
-                    <button className="btn btn-danger position-absolute top-0 end-0" onClick={() => setEditModal(true)}>Edit Task</button>
+                    <button className="btn btn-danger position-absolute top-0 end-0" onClick={() => setAddModal(true)}>Add Task</button>
                     <div className="row justify-content-center p-5" style={{}}>  
                         {tasks ? tasks.map((task, i) => (
                             <div key={i} className='row'>
@@ -37,9 +42,12 @@ export default function TasksPage({tasks, setRender}) {
                                     <p>Urgent</p>
                                     {/* <p>{<UrgentStatus/>}</p> */}
                                 </div>
-                                <div className='col-2'>
+                                <div className='col-1'>
                                     <p>Date</p>
                                     {/* <p>{<Date/>}</p> */}
+                                </div>
+                                <div className='col-1'>
+                                    <button className="btn btn-danger position-absolute" onClick={() => selectTask(task)}>Edit Task</button>
                                 </div>
                             </div>
                         )) : undefined }   
@@ -48,7 +56,7 @@ export default function TasksPage({tasks, setRender}) {
             </div>
         </section>
         { addModal ? <AddTaskModal open={addModal} setAddModal={setAddModal}/> : undefined }
-        { editModal ? <EditTaskModal open={editModal} setEditModal={setEditModal} setCompletedTaskModal={setCompletedTaskModal}/> : undefined }
+        { editModal ? <EditTaskModal open={editModal} setEditModal={setEditModal} setCompletedTaskModal={setCompletedTaskModal} activeTask={activeTask} /> : undefined }
         { completedTaskModal ? <CompletedTaskModal open={completedTaskModal} setCompletedTaskModal={setCompletedTaskModal}/> : undefined }
     </div>
   )
