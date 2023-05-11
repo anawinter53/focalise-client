@@ -80,28 +80,28 @@ export default function HomePage() {
             ) : tasks.length > 0 ? (
               isAccordion1Open && (
                <div className="accordion-content">
-  <table>
+  <table className="tbl-content" style={{marginTop: "25px"}}>
     <thead>
-      <tr>
-        <th style={{textDecoration: 'underline'}}>Category</th>
-        <th style={{textDecoration: 'underline'}}>Description</th>
-        <th style={{textDecoration: 'underline'}}>Deadline</th>
+      <tr className="tbl-header">
+        <th>Category</th>
+        <th>Task</th>
+        <th>Due</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{tasks[0].category_name}</td>
-        <td>{tasks[0].task_desc}</td>
+        <td style={{fontWeight: "bold"}}>{tasks[0].task_desc}</td>
         <td>{tasks[0].task_deadline.slice(0, 17)}</td>
       </tr>
       <tr>
       <td>{tasks[1].category_name}</td>
-        <td>{tasks[1].task_desc}</td>
+        <td style={{fontWeight: "bold"}}>{tasks[1].task_desc}</td>
         <td>{tasks[1].task_deadline.slice(0, 17)}</td>
       </tr>
       <tr>
       <td>{tasks[2].category_name}</td>
-        <td>{tasks[2].task_desc}</td>
+        <td style={{fontWeight: "bold"}}>{tasks[2].task_desc}</td>
         <td>{tasks[2].task_deadline.slice(0, 17)}</td>
       </tr>
     </tbody>
