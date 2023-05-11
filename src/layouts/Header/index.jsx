@@ -57,12 +57,13 @@ export default function Header() {
               {localStorage.token ?
                 <>
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
+                  <li>
+                      <MusicPlayer />
+                    </li>
                   <li className="nav-item">
                       <a className="nav-link" href="/profile" style={{ color: `${theme.secText}` }}>Profile</a>
                     </li>
-                    <li>
-                      <MusicPlayer />
-                    </li>
+                    
                     <li className="nav-item">
                       <a className="nav-link" href="/logout" style={{ color: `${theme.secText}` }}>Logout</a>
                     </li>
