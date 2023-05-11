@@ -205,7 +205,7 @@ export default function ProfilePage() {
               <h2>Account settings</h2>
               <ColourChanger onColorChange={handleBackgroundColorChange} />
               <FontResize onFontResize={handleFontResize} />
-              <button type="" className="btn mb-3" data-bs-toggle="modal" data-bs-target="#saveSettings" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Save Settings</button>
+              <button type="" className="btn mb-3" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Save Settings</button>
             </div>
           </div>
         </div>

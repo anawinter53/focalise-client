@@ -1,21 +1,22 @@
 import { useTheme } from '../../contexts/themes'
 import 'animate.css';
-import { Category, Tasks } from '../../components';
+import { Category, Tasks, AddCategory } from '../../components';
 import { useState, useEffect } from 'react';
 import * as Constant from '../../constants'
 
 export default function TasksPage() {
     const { theme } = useTheme();
     const [id, setId] = useState('')
-    const [categories, setCategories] = useState('')
+    const [categories, setCategories] = useState([])
     const [tasks, setTasks] = useState('')
     const [render, setRender] = useState()
 
-    useEffect(() => {
-        const user_id = localStorage.getItem("id");
-        if (user_id) {
-          setId(user_id);
+    useEffect( () => {
+        const getId = () => {
+            const user_id = localStorage.getItem("id");
+            user_id ? setId(user_id) : undefined
         }
+        getId()
       }, []);
 
       useEffect(() => {
@@ -23,8 +24,13 @@ export default function TasksPage() {
             console.log(id)
             const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/categories");
             const category_data = await res.json();
-            console.log(category_data)
-            setCategories(category_data)
+            if (category_data.length == 0) {
+                setRender("")
+            } else {
+                setCategories(category_data)
+                setRender("category")
+            }
+            
         }
         getCategories(id)
       }, [id]);
@@ -38,16 +44,18 @@ export default function TasksPage() {
     const getTasks = async (category) => {
           const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/" + category);
           const data = await res.json();
-          setTasks(data.task_name)
-          console.log(data)
+          setTasks(data)
     }
     function RenderTasksView() {
 
         if (render === 'tasks') {
-            return <Tasks tasks={tasks}/>
+            return <Tasks tasks={tasks} setRender={setRender} />
+        }
+        else if (render === 'category') {
+            return <Category handleTasks={handleTasks} categories={categories} />
         }
         else {
-            return <Category handleTasks={handleTasks} categories={categories}/>
+            return <AddCategory handleTasks={handleTasks} categories={categories} />
         }
     }
 

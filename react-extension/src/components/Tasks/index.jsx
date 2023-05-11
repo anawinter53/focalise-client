@@ -1,9 +1,9 @@
-import { User } from "../../contexts/user";
+import { useUser } from "../../contexts";
 import { useEffect, useState } from "react";
 import "./tasks.css";
 
 export default function Tasks() {
-  const { id } = User();
+  const { id } = useUser();
   const [tasks, setTasks] = useState([])
 
   const getTasks = async () => {
@@ -21,11 +21,11 @@ export default function Tasks() {
   
   return (
     <>
-      <h2>Consider focusing on your three most urgent tasks today:</h2>
+      <h2 className="page-title" style={{textAlign: 'center'}}>Consider focusing on your three most urgent tasks today: </h2>
       <table>
       {(tasks) ? 
         tasks.map((task, i) => (
-          <tr key={i}>
+          <tr className="table-row" key={i}>
             <td>{task.category_name}</td>
             <td>{task.task_desc}</td>
             <td>{task.task_deadline}</td>

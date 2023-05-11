@@ -42,7 +42,7 @@ export default function SensoryPage() {
     function RenderView() {
 
         if (render === 'video') {
-            return <Video time={sensoryTime} videoLink={videoLink} />
+            return <Video time={sensoryTime} videoLink={videoLink} setRender={setRender}/>
         }
         else if (render === 'type') {
             return <Type handleType={handleType}/>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import * as Constant from '../../constants'
+
 export default function LogoutPage() {
   
   
