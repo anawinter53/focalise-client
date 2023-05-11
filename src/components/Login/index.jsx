@@ -46,14 +46,13 @@ export default function Login() {
       window.location.assign("/");
     }
   }, [id]);
-  useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   return (
     <section>
         <div id="login-page" className="d-flex justify-content-center align-items-center">
-          <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`, color: `${theme.primText}`}}>
+          <div className="p-5 m-5 shadow rounded" style={{backgroundColor: theme.secColor, color: theme.secText}}>
               <form>
-                  <div className="mb-3">
+                  <div className="mb-3" >
                     <label htmlFor="Email1" className="form-label">Username</label>
                     <input onChange={emailHandler} type="email" placeholder="username" className="form-control" id="Email1" aria-describedby="emailHelp"/>
                     <div id="emailHelp" className="form-text">We'll never share your details with anyone else.</div>
@@ -62,9 +61,9 @@ export default function Login() {
                     <label htmlFor="Password1" className="form-label">Password</label>
                     <input  onChange={passwordHandler} placeholder="password" type="password" className="form-control" id="Password1"/>
                   </div>
-                  <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
+                  <button onClick={handleSubmit} type="submit" className="btn" style={{backgroundColor: theme.primColor, color: theme.primText}}>Submit</button>
                 </form>
-                <div className='mt-3'><a  href="/register">Create Account</a></div>
+                <div className='mt-3'><a  href="/register" style={{color: theme.secText}}>Create Account</a></div>
           </div>
         </div>
     </section>
