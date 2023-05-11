@@ -40,7 +40,7 @@ export default function TasksPage({tasks, setTasks, setRender}) {
             // body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: newStatus})
             body: JSON.stringify({task_status: status})
         }
-        const res = await fetch(Constant.MAIN_URl + "tasks/" + task_id, options)
+        const res = await fetch(Constant.MAIN_URl + "tasks/" + task_id + "/status", options)
         const data = await res.json()
         console.log(data)
         
