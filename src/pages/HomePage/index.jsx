@@ -95,9 +95,9 @@ export default function HomePage() {
         <td>{tasks[0].task_deadline.slice(0, 17)}</td>
       </tr>
       <tr>
-      <td>{tasks[10].category_name}</td>
-        <td>{tasks[10].task_desc}</td>
-        <td>{tasks[10].task_deadline.slice(0, 17)}</td>
+      <td>{tasks[1].category_name}</td>
+        <td>{tasks[1].task_desc}</td>
+        <td>{tasks[1].task_deadline.slice(0, 17)}</td>
       </tr>
       <tr>
       <td>{tasks[2].category_name}</td>
