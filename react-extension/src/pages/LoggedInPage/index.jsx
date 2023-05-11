@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import './loggedin.css'
 
 export default function LoggedInPage() {
     const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -15,7 +16,7 @@ export default function LoggedInPage() {
     
     return (
       <>
-        <p>You are now logged in!</p>
+        <p className='centered'>You are now logged in!</p>
       </>
     )
   }

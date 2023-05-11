@@ -10,7 +10,7 @@ export default function Tasks() {
     console.log(id);
     // const res = await fetch(`http://localhost:4000/tasks/user/${id}`);
     //Temporarily coding the user ID to 1 because my username doesn't have any tasks
-    const res = await fetch(`http://localhost:4000/tasks/user/1`);
+    const res = await fetch(`https://focalise-backend.onrender.com/tasks/user/1`);
     const data = await res.json();
     setTasks(data)
   };
