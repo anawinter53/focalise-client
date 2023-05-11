@@ -47,7 +47,7 @@ export default function Header() {
                 <a className="nav-link" href="/workplan" style={{color: `${theme.primText}`}}>Workplan</a>
               </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/Profile" style={{color: `${theme.primText}`}}>Profile</a>
+                      <a className="nav-link" href="/profile" style={{color: `${theme.primText}`}}>Profile</a>
                     </li>
                     <li>
                       <MusicPlayer />
