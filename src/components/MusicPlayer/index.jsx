@@ -94,7 +94,7 @@ export const MusicPlayer = () => {
   }, []);
 
   return (
-    <div className='d-flex rounded border me-2' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>
+    <div className='d-flex rounded border me-2' style={{backgroundColor: theme.primColor, color: theme.primText}}>
       <Select
         options={tracks.map((track) => ({
           value: track.id,
@@ -102,7 +102,7 @@ export const MusicPlayer = () => {
         }))}
         onChange={playTrack}
       />
-      <button className='btn border-0'  onClick={pauseTrack} disabled={isPaused ? true : false} style={{color: `${theme.primText}`}}>Stop</button>
+      <button className='btn border-0'  onClick={pauseTrack} disabled={isPaused ? true : false} style={{color:theme.primText}}>Stop</button>
     </div>
   );
 };

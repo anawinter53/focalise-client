@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from '../../contexts'
 import TimeUpModal from '../TimeUpModal'
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 export default function Video({ time, videoLink, setRender}) {
     const { theme } = useTheme()
     const [timer, setTimer] = useState(0);
@@ -38,14 +39,16 @@ export default function Video({ time, videoLink, setRender}) {
     useEffect(() => {
         togglerTimer()
     }, [])
-    useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` },)
 
     return (
         <section id="video-frame">
             <div className="container">
-                <div className="row shadow rounded m-5 position-relative" style={{ backgroundColor: `${theme.primBG}` }}>
-                <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('type')}>Back</button>
-                    <p className='fs-5 text-center mt-3' style={{ color: `${theme.primText}` }}>{`${minutes}:${seconds}`}</p>
+                <div className="row shadow rounded m-5 position-relative" style={{ backgroundColor: theme.secColor }}>
+                    <div className='d-flex justify-content-between'>
+                        <button className="btn fs-1" style={{ color: theme.secText}} onClick={() => setRender('type')}><BsFillArrowLeftSquareFill/></button>
+                        <p className='mt-3 p-2' style={{ backgroundColor: theme.primColor, color: theme.primText }}>{`${minutes}:${seconds}`}</p>
+                    </div>
+        
                     <iframe className='px-5 pb-5' style={{ aspectRatio: 3 / 1.3 }}
                         width="853"
                         src={videoLink}
