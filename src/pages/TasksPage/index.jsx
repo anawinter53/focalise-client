@@ -17,22 +17,22 @@ export default function TasksPage() {
             user_id ? setId(user_id) : undefined
         }
         getId()
+        console.log('id created')
       }, []);
 
       useEffect(() => {
         const getCategories = async (id) => {
             console.log(id)
-            const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/categories");
+            const res = await fetch(Constant.MAIN_URl + `tasks/user/${id}/categories`);
             const category_data = await res.json();
             if (category_data.length == 0) {
                 setRender("")
             } else {
                 setCategories(category_data)
                 setRender("category")
-            }
-            
+            }  
         }
-        getCategories(id)
+        id ? getCategories(id) : undefined
       }, [id]);
 
     function handleTasks(category) {
