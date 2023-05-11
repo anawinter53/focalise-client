@@ -25,15 +25,15 @@ useEffect(() => {
   return (
     
     <div className='text-center mt-5 ' style={{backgroundColor: theme.primColor, color: theme.primText}}>
-      <h3 className="fw-semibold"><span className="font-monospace">Welcome to </span>  F O C A L I S E</h3>
+      <h3 className="fw-semibold" style={{marginTop: "20%"}}><span className="font-monospace">Welcome to </span>  F O C A L I S E</h3>
       <p className="my-5 font-monospace">Your one-stop spot for productivity online<br/>It’s currently:</p>
       <h2 className='timeDisplay my-5 font-monospace' data-testid="timeDisplay">{date.toLocaleTimeString()}</h2>
-      <p className="fw-light font-monospace">Find out more about Focalise</p>
+      <p className="fw-light font-monospace">Find out more</p>
       <div className="arrow mt-5">
         <a className="fa fa-arrow-down fa-2x" style={{color: theme.primText}} href="#more-info" onClick={handleClickArrow}></a>
       </div>
       {showMoreInfo && (
-        <section id="more-info" style={{ height: '100vh' }}>
+        <section id="more-info" style={{ height: '85vh' }}>
           <div className="card-row">
             <div className="card border-1" style={{backgroundColor: theme.primColor, color: theme.primText, borderColor: theme.secColor}}>
               <h2>Sensory</h2>
@@ -56,7 +56,7 @@ useEffect(() => {
             </div>
           </div>
           <button className="btn p-3 mb-5"style={{backgroundColor: theme.secColor}} >
-            <Link className="nav-link" style={{color: theme.secText}} to='/register'>Signup for Focalise</Link>
+            <Link className="" style={{color: theme.secText}} to='/register'>Signup for Focalise</Link>
           </button>
         </section>
       )}
