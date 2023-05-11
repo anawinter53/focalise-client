@@ -1,13 +1,15 @@
 import addNotification from 'react-push-notification'
 import { Notifications} from 'react-push-notification'
 import { useEffect, useState } from 'react'
-import './NotificationPage.css'
 import { CategoryChoice, TaskChoice } from '../../components'
 import * as Constant from '../../constants'
 
-function NotificationPage() {
+import { useTheme } from '../../contexts/themes'
+import 'animate.css';
 
-    const [notifyTime, setNotifyTime] = useState(null)
+function NotificationPage() {
+    const { theme } = useTheme();
+    
     const [countDown, setCountDown] = useState(null)
     const [breakCountDown, setBreakCountDown] = useState(null)
     const [breakTimer, setBreakTimer] = useState(null)
@@ -29,13 +31,13 @@ function NotificationPage() {
 
     useEffect(() => {
         const getCategories = async (id) => {
-            console.log(id)
             const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/categories");
             const category_data = await res.json();
-            console.log(category_data)
             setCategories(category_data)
         }
-        getCategories(id)
+        if (id) {
+            getCategories(id)
+        }
       }, [id]);
 
     useEffect(() => {
@@ -173,7 +175,6 @@ function NotificationPage() {
 
     const handleTasks = (category) => {
         getTasks(category)
-        console.log(tasks)
         setRender("tasks")
     }
 
@@ -208,44 +209,52 @@ function NotificationPage() {
 
 
 
-    return <div className='notification'>
-        <h1>Workplans page</h1>
-        <button onClick={() => setCountDown(10)}>10 Second countdown</button>
-        <div>
-            {countDown ? <h2>Time Remaining: {Math.floor(countDown / 3600)} : {Math.floor((countDown % 3600)/60)} : {countDown % 60}</h2> : ""}
-        </div>
-        <div>
-            {breakCountDown ? <h2>Time until next break: {Math.floor(breakCountDown/60)} : {breakCountDown % 60}</h2> : ""}
-        </div>
-        <div>
-            {breakTimer ? <h2>Time left of break: {Math.floor(breakTimer/60)} : {breakTimer % 60}</h2> : ""}
+    return <div className='notification' style={{ backgroundColor: `${theme.primColor}` }}>
+        <div style={{textAlign: "center", padding: "20 0", margin: "30px"}}>
+            <h1 >Workplans page</h1>
+            <p>Select a plan for a work session, and receive notifications to keep you on track</p>
         </div>
 
-        <div className='work-plans'>
-            <div className='get-started'>
+        {/* <button onClick={() => setCountDown(10)}>10 Second countdown</button> */}
+        <div className='d-flex timers' style={{justifyContent: "space-evenly", margin: "30px"}}>
+            <div >
+                {countDown ? <h4>Time Remaining: {Math.floor(countDown / 3600)} : {Math.floor((countDown % 3600)/60)} : {countDown % 60}</h4> : ""}
+            </div>
+            <div >
+                {breakCountDown ? <h4>Time until next break: {Math.floor(breakCountDown/60)} : {breakCountDown % 60}</h4> : ""}
+            </div>
+            <div>
+                {breakTimer ? <h4>Time left of break: {Math.floor(breakTimer/60)} : {breakTimer % 60}</h4> : ""}
+            </div>
+        </div>
+
+
+        <div className='work-plans' style={{display: "flex", justifyContent: "space-evenly"}}>
+            <div className="container text-center pt-3 shadow rounded position-relative get-started" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, maxWidth: "25%", textAlign: "center"}}>
                 <h2>Get started on a task</h2>
                 <p>Getting started is one of the hardest things. Set a timer for just to ten minutes and get one going.</p>
-                <button onClick={() => setRender('categories')}>Choose task</button>
-                <button onClick={handleStartingSubmit}>Start</button>
+                
+                <button onClick={handleStartingSubmit} className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Start</button>
             </div>
-            <div className='work-session'>
+            <div className="container text-center pt-3 shadow rounded position-relative work-session" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, maxWidth: "25%", textAlign: "center"}}>
                 <h2>Session of work</h2>
                 <p>Set a timer for an hour, with regular breaks in the middle.</p>
-                <button onClick={handleSessionSubmit}>Start</button>
+                <button onClick={handleSessionSubmit} className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Start</button>
             </div>
-            <div className="deadline">
+            <div className="container text-center pt-3 shadow rounded position-relative deadline" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, maxWidth: "25%", textAlign: "center"}}>
                 <h2>Work to a deadline</h2>
-                <p>Set a time to finish a task by.</p>
+                <p>Got a deadline to work to? Start a count down, and get reminders to take breaks along the way</p>
                 <form onSubmit={handleDeadlineSubmit}>
                     <label htmlFor='deadline'>Set end time:</label>
                     <input type='time' id='deadline' onChange={(e) => setDeadline(e.target.value)}/>
                     {(deadline < time) ? <p>Please enter a time later than the current</p> : ""}
-                    <button type='submit'>Start</button>
+                    <button type='submit' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Start</button>
                 </form>
             </div>
         </div>
+        <button onClick={() => setRender('categories')} className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`, margin: "30px"}}>Choose a task to work on</button>
         <RenderPopup />
-        <button onClick={updateTask}>Update</button>
+        {/* <button onClick={updateTask}>Update</button> */}
     </div>
 }
 
