@@ -31,12 +31,6 @@ export default function SensoryPage() {
         RenderView()
     }
     const getSensoryVideos = async (type) => {
-        const options = {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ "video_category": `${type}` }),
-          };
-          console.log(options)
           const res = await fetch( Constant.MAIN_URl + "sensory/" + type);
           const data = await res.json();
           //random
