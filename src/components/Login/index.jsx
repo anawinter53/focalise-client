@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import "./login.css";
 import { useTheme } from "../../contexts";
 import { user } from "../../contexts/user";
-import axios from 'axios';
 import * as Constant from '../../constants'
-
 
 export default function Login() {
   const { id, setID, password, setPassword, username, setUsername, token, setToken, email, setEmail } =

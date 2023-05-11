@@ -9,7 +9,7 @@ export default function ColourChanger (props) {
         // console.log('selectedOption', selectedOption)
         // // props.onColorChange(color);
       props.onColorChange(selectedOption.value);
-      console.log(selectedOption)
+      //console.log(selectedOption)
         // localStorage.setItem("backgroundColor", theme.primColor);
       };
 
@@ -18,7 +18,7 @@ export default function ColourChanger (props) {
        for (let op in themes) {
           colorOptions.push({'label':op, 'value': op})
         }
-        console.log(colorOptions)
+        //console.log(colorOptions)
       // const colorOptions = [
       //   { value: "#D17B88", label: "Rose" },
       //   { value: "#E2E4F6", label: "Lavender" },

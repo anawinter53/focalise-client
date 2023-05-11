@@ -7,6 +7,7 @@ import FontResize from "../../components/FontResize";
 import { useTheme } from "../../contexts";
 import Select from 'react-select'
 import * as Constant from '../../constants'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,10 +17,15 @@ export default function ProfilePage() {
   );
   const { theme, setTheme, themes } = useTheme({})
   const [localColor, setLocalColor] = useState('');
-  const [fontColor, setFontColor] = useState('')
+  const [setFontColor] = useState('')
   const [fontSize, setFontSize] = useState('')
   const [username, SetUsername] = useState(localStorage.username)
   const [email, setEmail] = useState(localStorage.userEmail)
+  const [txtPassword, setTxtPassword] = useState()
+  const [currentPass, setCurrentPass] = useState()
+  const [newPass, setNewPass] = useState()
+  const [confirmPass, setConfirmPass] = useState()
+
 
   const handleImageSelect = (image) => {
     setSelectedImage(image);
@@ -57,38 +63,88 @@ export default function ProfilePage() {
     setFontSize(size)
     localStorage.setItem('fontSize', size)
   }
-  function handleSubmit(e) {
-    if (e.target.id === 'btnSubmit') {
-      e.preventDefault()
-      updateUser()
-      setTheme(themes[localStorage.getItem('userTheme')])
-      console.log('---->>>>',localStorage.getItem('userTheme') )
+  async function handleChangePassword() {
+
+    if (newPass !== confirmPass) {
+      toast.error("Confirm password did not match")
+      return
     }
-    else {
-      setTheme(themes[localColor])
-    }
-    
-  }
-  const updateUser = async () => {
     const options = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: username, email: email
+        currentPassword: currentPass, newPassword: newPass
       }),
     };
-    const res = await fetch(Constant.MAIN_URl + `users/${localStorage.id}`, options);
-    const data = await res.json();
-    //console.log(data)
-    localStorage.setItem("username", data.username)
-    localStorage.setItem("userEmail", data.userEmail)
-    toast.success(data.message)
+    try {
+      const resp = await fetch(Constant.MAIN_URl + `users/password/${localStorage.id}`, options);
+      const data = await resp.json();
+      console.log(data.message)
+      toast.warning(data.message)
+    } catch (e) {
+      console.log(e)
+    }
+
+
+  }
+  async function handleSubmit(e) {
+    if (e.target.id === 'btnSubmit') {
+      // e.preventDefault()
+      updateUser()
+      setTheme(themes[localStorage.getItem('userTheme')])
+    }
+    else {
+      setTheme(themes[localColor])
+    }
+
+  }
+
+  const updateUser = async () => {
+
+    const options = {
+      method: 'POST',
+      headers: { "Content-Type": "application/json", "charset": "utf8" },
+      body: JSON.stringify({
+        password: `${txtPassword}`
+      })
+    }
+    console.log(Constant.MAIN_URl + `users/password/${localStorage.id}`, options)
+    const res = await fetch(Constant.MAIN_URl + `users/password/${localStorage.id}`, options)
+    const passData = await res.json()
+
+    if (passData.status) {
+      const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", "Accept": '*' },
+        body: JSON.stringify({
+          username: username, email: email
+        }),
+      };
+      const resp = await fetch(Constant.MAIN_URl + `users/${localStorage.id}`, options);
+      const data = await resp.json();
+      localStorage.setItem("username", data.username)
+      localStorage.setItem("userEmail", data.userEmail)
+      toast.success(data.message)
+
+    }
 
   }
   function handleInput(e) {
     e.preventDefault()
     if (e.target.id === 'usernameInput') {
       SetUsername(e.target.value)
+    }
+    else if (e.target.id === 'txtPassword') {
+      setTxtPassword(e.target.value)
+    }
+    else if (e.target.id === 'CurrentPassword') {
+      setCurrentPass(e.target.value)
+    }
+    else if (e.target.id === 'NewPassword') {
+      setNewPass(e.target.value)
+    }
+    else if (e.target.id === 'ConfirmPassword') {
+      setConfirmPass(e.target.value)
     }
     else {
       setEmail(e.target.value)
@@ -99,18 +155,18 @@ export default function ProfilePage() {
     <section style={{ backgroundColor: `${theme.primColor}` }}>
       <div className="container py-5">
         <div className="row justify-content-start">
-          <div className="col-2 col-xl-4" style={{ backgroundColor: `${theme.primBG}` }}>
+          <div className="col-5" style={{ backgroundColor: `${theme.primBG}` }}>
             <div className="m-5">
               <div className="card-body text-center">
                 <div className="mt-3 mb-4">
                   {selectedImage ? (
-                    <img className="img-fluid" style={{ maxWidth: "128px", maxHeight: "128px"}}
+                    <img className="img-fluid" style={{ maxWidth: "128px", maxHeight: "128px" }}
                       src={selectedImage}
                       alt="Your Image"
 
                     />
                   ) : (
-                    <img
+                    <img style={{ maxWidth: "128px", maxHeight: "128px" }}
                       src="https://img.icons8.com/bubbles/256/null/gender-neutral-user.png"
                       alt="Placeholder Image"
                       className="img-fluid"
@@ -135,21 +191,18 @@ export default function ProfilePage() {
                 </div>
                 <h4 className="mb-2">{username}</h4>
                 <p className="text-muted mb-4">{email}</p>
+                <duv className='d-flex'>
+                  <button type="" className="btn m-3" data-bs-toggle="modal" data-bs-target="#saveSettings" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Update Profile</button>
+                  <button className="btn m-3" data-bs-toggle="modal" data-bs-target="#changePassword" style={{ backgroundColor: theme.accentColor, color: `${theme.primText}` }}>Change Password</button>
+                  
+                </duv>
               </div>
             </div>
           </div>
-          <div className="col-10 col-xl-4">
+
+          <div className="col-4">
             <div className="">
               <h2>Account settings</h2>
-
-              <div className="mb-3">
-                <label htmlFor="userNameInput" className="form-label">User name</label>
-                <input onChange={handleInput} type="text" className="form-control" id="usernameInput" value={username}></input>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="emailInput" className="form-label">Email</label>
-                <input onChange={handleInput} className="form-control" type='email' id="emailInput" value={email}></input>
-              </div>
               <ColourChanger onColorChange={handleBackgroundColorChange} />
               <FontResize onFontResize={handleFontResize} />
               <button type="" className="btn mb-3" data-bs-toggle="modal" data-bs-target="#saveSettings" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Save Settings</button>
@@ -166,10 +219,47 @@ export default function ProfilePage() {
             </div>
             <div className="modal-body">
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">Enter password to save settings</label>
-                <input className="form-control" type='password' id="password"></input>
+                <label htmlFor="userNameInput" className="form-label">User name</label>
+                <input onChange={handleInput} type="text" className="form-control" id="usernameInput" value={username}></input>
               </div>
+              <div className="mb-3">
+                <label htmlFor="emailInput" className="form-label">Email</label>
+                <input onChange={handleInput} className="form-control" type='email' id="emailInput" value={email}></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password</label>
+                <input className="form-control" type='password' id="txtPassword" onChange={handleInput}></input>
+              </div>
+
               <button onClick={handleSubmit} id='btnSubmit' type="submit" className="btn mb-3" data-bs-dismiss="modal" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>submit</button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div className="modal fade" id="changePassword" tabIndex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="changePasswordLabel">Change Password</h1>
+              <button type="button" id='btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <div className="mb-3">
+                <label htmlFor="CurrentPassword" className="form-label">Current Password</label>
+                <input onChange={handleInput} type="password" className="form-control" id="CurrentPassword"></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="NewPassword" className="form-label">New Password</label>
+                <input onChange={handleInput} className="form-control" type='password' id="NewPassword"></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="ConfirmPassword" className="form-label">Confirm Password</label>
+                <input className="form-control" type='password' id="ConfirmPassword" onChange={handleInput}></input>
+              </div>
+
+              <button onClick={handleChangePassword} id='btnSubmitChangePassword' type="submit" className="btn mb-3" data-bs-dismiss="modal" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>submit</button>
 
             </div>
 
