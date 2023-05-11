@@ -3,8 +3,12 @@ import {Routes, Route} from 'react-router-dom'
 import * as Layouts from './layouts'
 import { UserProvider } from "./contexts/user";
 import { Notifications } from 'react-push-notification';
+import { useEffect } from 'react';
+import { useTheme } from './contexts';
 
 function App() {
+  const { theme } = useTheme()
+  useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
   return (
     <UserProvider>

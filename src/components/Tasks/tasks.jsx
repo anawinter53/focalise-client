@@ -63,9 +63,9 @@ export default function TasksPage({tasks, setTasks, setRender}) {
     <div>
       <section id="select-task-category" style={{height: '100vh'}}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
-                <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
-                    <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('')}>Back</button>
-                    <button className="btn btn-danger position-absolute top-0 end-0" onClick={() => setAddModal(true)}>Add Task</button>
+                <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: theme.secColor, color: theme.primColor,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
+                    <button className="btn btn-success position-absolute top-1 start-0" onClick={() => setRender('')}>Back</button>
+                    <button className="btn btn-danger position-absolute top-1 end-0" onClick={() => setAddModal(true)}>Add Task</button>
                     <div className="row justify-content-center p-5" style={{}}>  
                         {tasks ? tasks.map((task, i) => (
                             <div key={i} className='row'>

@@ -23,7 +23,7 @@ export default function LoginPage() {
     
   }, []);
   return (
-    <div className='login-page-body' style={{backgroundColor, color: fontColor, fontSize}}>
+    <div className='login-page-body'>
         <Login />
         <section>
         <div className='air air1'></div>

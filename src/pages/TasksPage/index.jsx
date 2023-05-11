@@ -37,7 +37,7 @@ export default function TasksPage() {
 
     function handleTasks(category) {
         getTasks(category)
-        console.log(tasks)
+        //console.log(tasks)
         setRender("tasks")
         RenderTasksView()
     } 
@@ -60,7 +60,7 @@ export default function TasksPage() {
     }
 
     return (
-        <div style={{ backgroundColor: `${theme.primColor}` }}>
+        <div>
             <RenderTasksView/>
         </div>
     )
