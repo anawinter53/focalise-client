@@ -271,6 +271,8 @@ function NotificationPage() {
                             <button onClick={() => setRender('categories')} className='btn' style={{ backgroundColor: theme.primColor, color: theme.primText, margin: "30px" }}>Choose a task to work on</button>
                             <RenderPopup />
                         </div>
+                        <button onClick={() => setRender('categories')} className='btn w-50' style={{ backgroundColor: theme.primColor, color: theme.primText, margin: "30px"}}>Choose a task to work on</button>
+                        <RenderPopup />
                     </div>
                 </div>
             </section>
