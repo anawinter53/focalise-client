@@ -48,6 +48,7 @@ useEffect(() => {
             <div className="card" style={{backgroundColor: '#D17B88', color: 'white', border: '5px solid white'}}>
               <h2>Extension</h2>
               <p>The Chrome extension provides users with a convenient way to stay on top of their tasks even when they are outside of the app. With the extension installed, users can easily track their tasks from anywhere on the web, making it easy to stay focused and productive throughout the day. Additionally, the extension provides a seamless way to navigate back to the app, ensuring that users can quickly access their tasks and stay on track.</p>
+
             </div>
           </div>
           <button className="login-button">
