@@ -64,10 +64,10 @@ export default function TasksPage({tasks, setTasks, setRender}) {
           <section id="select-task-category" style={{ height: '100vh' }}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
               <div className="container text-center pt-3 shadow rounded position-absolute" style={{ backgroundColor: theme.secColor, color: theme.primColor, top: '50%', left: '50%', transform: `translate(-50%,50%)` }}>
-                <button className="btn btn-success position-absolute top-1 start-0" onClick={() => setRender('')}>Back</button>
-                <button className="btn btn-danger position-absolute top-1 end-0" onClick={() => setAddModal(true)}>Add Task</button>
-                <div className="row justify-content-center p-5" style={{}}>
-                  <table className="table">
+                <button className="btn position-absolute top-1 start-0 ms-3" onClick={() => setRender('')} style={{ backgroundColor: theme.primColor, color: theme.secColor }}>Back</button>
+                <button className="btn btn-primary position-absolute top-1 end-0 me-3" onClick={() => setAddModal(true)}>Add Task</button>
+                <div className="row justify-content-center p-5">
+                  <table className="table" style={{color: theme.primColor }}>
                     <thead>
                       <tr>
                         <th></th>
@@ -102,13 +102,13 @@ export default function TasksPage({tasks, setTasks, setRender}) {
                             <p>Date</p>
                             {/* <p>{<Date/>}</p> */}
                           </td>
-                          <td>
-                            <button className="btn btn-danger position-absolute" onClick={() => selectTask(task)}>Edit Task</button>
+                          <td className='d-flex'>
+                            <button className="btn btn-outline-danger m-1 " onClick={() => selectTask(task)}>Edit Task</button>
                             {(() => {
                               if (task.task_status == "Not Started") {
-                                return <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button>
+                                return <button id="start-btn" className='btn btn-outline-success' value={task.task_id} onClick={updateStatus}>Mark as started</button>
                               } else if (task.task_status == "In Progress") {
-                                return <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
+                                return <button id="complete-btn" className='btn btn-outline-success' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
                               }
                             })()}
                           </td>
