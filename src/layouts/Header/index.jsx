@@ -8,14 +8,16 @@ export default function Header() {
 
   function handleTheme(){
     switch(localStorage.getItem('userTheme')) {
-      case 'theme2':
-        return setTheme(themes.theme2);
-      case 'theme3':
-        return setTheme(themes.theme3);
-      case 'theme4':
-        return setTheme(themes.theme4);
+      case 'Sage':
+        return setTheme(themes.Sage);
+      case 'Rose':
+        return setTheme(themes.Rose);
+      case 'Twilight':
+        return setTheme(themes.Twilight);
+      case 'Melon':
+        return setTheme(themes.Melon);
       default:
-        return setTheme(themes.theme1);
+        return setTheme(themes.Lavender);
     }
   }
 
