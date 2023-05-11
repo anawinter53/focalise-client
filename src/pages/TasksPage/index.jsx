@@ -8,7 +8,7 @@ export default function TasksPage() {
     const { theme } = useTheme();
     const [id, setId] = useState('')
     const [categories, setCategories] = useState([])
-    const [tasks, setTasks] = useState('')
+    const [tasks, setTasks] = useState([])
     const [render, setRender] = useState()
 
     useEffect( () => {
@@ -49,7 +49,7 @@ export default function TasksPage() {
     function RenderTasksView() {
 
         if (render === 'tasks') {
-            return <Tasks tasks={tasks} setRender={setRender} />
+            return <Tasks tasks={tasks} setTasks={setTasks} setRender={setRender} />
         }
         else if (render === 'category') {
             return <Category handleTasks={handleTasks} categories={categories} />

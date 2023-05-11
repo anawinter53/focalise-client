@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { useTheme } from '../../contexts'
 import { AddTaskModal, EditTaskModal, CompletedTaskModal } from '../../components'
 import { BsCircle, BsRecordCircleFill, BsFillCheckCircleFill } from 'react-icons/bs';
+import * as Constant from '../../constants'
 
-export default function TasksPage({tasks, setRender}) {
+export default function TasksPage({tasks, setTasks, setRender}) {
     const { theme } = useTheme()
     const [addModal, setAddModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
@@ -14,6 +15,48 @@ export default function TasksPage({tasks, setRender}) {
     const selectTask = (task) => {
         setEditModal(true)
         setActiveTask(task)
+    }
+
+    const updateStatus = async (e) => {
+        e.preventDefault()
+        console.log(tasks)
+        const task_id = e.target.value
+        console.log(task_id)
+        let items = tasks
+        console.log(items)
+        const task = items.find(t => t.task_id = task_id)
+        console.log(task)
+        const status = task.task_status
+        console.log(status)
+        let newStatus
+        if (status === "Not Started") {
+            newStatus = "In Progress"
+        } else if (status === "In Progress") {
+            newStatus = "Complete"
+        }
+        const options = {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            // body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: newStatus})
+            body: JSON.stringify({task_status: status})
+        }
+        const res = await fetch(Constant.MAIN_URl + "tasks/" + task_id, options)
+        const data = await res.json()
+        console.log(data)
+        
+        
+        // setTasks(... tasks[0].status = "In Progress")
+        console.log(items)
+        const index = items.findIndex(t => t.task_id == task_id)
+        console.log(index)
+        items[index].status = newStatus
+        console.log(items)
+        setTasks(items)
+        console.log(tasks)
+    }
+
+    const completeTask = (e) => {
+        e.preventDefault()
     }
 
   return (
@@ -47,7 +90,15 @@ export default function TasksPage({tasks, setRender}) {
                                     {/* <p>{<Date/>}</p> */}
                                 </div>
                                 <div className='col-1'>
-                                    <button className="btn position-absolute" onClick={() => selectTask(task)} style={{backgroundColor: theme.primColor, color: theme.primText}}>Edit Task</button>
+                                    <button className="btn btn-danger position-absolute" onClick={() => selectTask(task)}>Edit Task</button>
+                                    {/* { task.task_status == "Not Started" ? <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button> : <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>} */}
+                                    {(() => {
+                                        if (task.task_status == "Not Started") {
+                                            return <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button>
+                                        } else if (task.task_status == "In Progress") {
+                                            return <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
+                                        }
+                                    })()}
                                 </div>
                             </div>
                         )) : undefined }   
@@ -58,6 +109,7 @@ export default function TasksPage({tasks, setRender}) {
         { addModal ? <AddTaskModal open={addModal} setAddModal={setAddModal}/> : undefined }
         { editModal ? <EditTaskModal open={editModal} setEditModal={setEditModal} setCompletedTaskModal={setCompletedTaskModal} activeTask={activeTask} /> : undefined }
         { completedTaskModal ? <CompletedTaskModal open={completedTaskModal} setCompletedTaskModal={setCompletedTaskModal}/> : undefined }
+        
     </div>
   )
 }
@@ -65,15 +117,13 @@ export default function TasksPage({tasks, setRender}) {
 
 function CheckCircle({task}) {
     const [activeComponent, setActiveComponent] = useState(undefined)
-    console.log(task)
-
 
     useEffect(() => {
         switch (task.task_status) {
             case 'Not Started':
                 setActiveComponent(<BsCircle />)
                 break;
-            case 'Started':
+            case 'In Progress':
                 setActiveComponent(<BsRecordCircleFill />)
                 break;
             default:
