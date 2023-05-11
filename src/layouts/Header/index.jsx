@@ -33,12 +33,9 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
-
-            </ul>
-            <span className="navbar-text d-flex">
-              {localStorage.token ?
+            {localStorage.token ?
                 <>
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0" >
                     <li className="nav-item">
                       <a className="nav-link active" href="/sensory" style={{ color: `${theme.secText}` }}>Sensory</a>
                     </li>
@@ -48,7 +45,19 @@ export default function Header() {
                     <li className="nav-item">
                       <a className="nav-link" href="/workplan" style={{ color: `${theme.secText}` }}>Workplan</a>
                     </li>
-                    <li className="nav-item">
+                  </ul>
+                </> :
+                <>
+                  
+                </>
+              }
+            </ul>
+            <span className="navbar-text d-flex">
+
+              {localStorage.token ?
+                <>
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
+                  <li className="nav-item">
                       <a className="nav-link" href="/profile" style={{ color: `${theme.secText}` }}>Profile</a>
                     </li>
                     <li>
