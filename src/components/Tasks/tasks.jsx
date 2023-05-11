@@ -59,59 +59,74 @@ export default function TasksPage({tasks, setTasks, setRender}) {
         e.preventDefault()
     }
 
-  return (
-    <div>
-      <section id="select-task-category" style={{height: '100vh'}}>
+    return (
+        <div>
+          <section id="select-task-category" style={{ height: '100vh' }}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
-                <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: theme.secColor, color: theme.primColor,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
-                    <button className="btn btn-success position-absolute top-1 start-0" onClick={() => setRender('')}>Back</button>
-                    <button className="btn btn-danger position-absolute top-1 end-0" onClick={() => setAddModal(true)}>Add Task</button>
-                    <div className="row justify-content-center p-5" style={{}}>  
-                        {tasks ? tasks.map((task, i) => (
-                            <div key={i} className='row'>
-                                <div  className='col-2'>
-                                    {<CheckCircle task={task}/>}
-                                </div>
-                                <div className='col-2'>
-                                    <p name={task.task_name} >{task.task_name}</p>
-                                </div>
-                                <div className='col-2'>
-                                    <p name={task.task_desc} >{task.task_desc}</p>
-                                </div>
-                                <div className='col-2'>
-                                    <p>{task.task_url}</p>
-                                </div>
-                                <div className='col-2'>
-                                    <p>Urgent</p>
-                                    {/* <p>{<UrgentStatus/>}</p> */}
-                                </div>
-                                <div className='col-1'>
-                                    <p>Date</p>
-                                    {/* <p>{<Date/>}</p> */}
-                                </div>
-                                <div className='col-1'>
-                                    <button className="btn btn-danger position-absolute" onClick={() => selectTask(task)}>Edit Task</button>
-                                    {/* { task.task_status == "Not Started" ? <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button> : <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>} */}
-                                    {(() => {
-                                        if (task.task_status == "Not Started") {
-                                            return <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button>
-                                        } else if (task.task_status == "In Progress") {
-                                            return <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
-                                        }
-                                    })()}
-                                </div>
-                            </div>
-                        )) : undefined }   
-                    </div>
-                </div>            
+              <div className="container text-center pt-3 shadow rounded position-absolute" style={{ backgroundColor: theme.secColor, color: theme.primColor, top: '50%', left: '50%', transform: `translate(-50%,50%)` }}>
+                <button className="btn btn-success position-absolute top-1 start-0" onClick={() => setRender('')}>Back</button>
+                <button className="btn btn-danger position-absolute top-1 end-0" onClick={() => setAddModal(true)}>Add Task</button>
+                <div className="row justify-content-center p-5" style={{}}>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Task Name</th>
+                        <th>Task Description</th>
+                        <th>Task URL</th>
+                        <th>Urgent</th>
+                        <th>Date</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tasks ? tasks.map((task, i) => (
+                        <tr key={i}>
+                          <td>
+                            {<CheckCircle task={task} />}
+                          </td>
+                          <td>
+                            <p name={task.task_name}>{task.task_name}</p>
+                          </td>
+                          <td>
+                            <p name={task.task_desc}>{task.task_desc}</p>
+                          </td>
+                          <td>
+                            <p>{task.task_url}</p>
+                          </td>
+                          <td>
+                            <p>Urgent</p>
+                            {/* <p>{<UrgentStatus/>}</p> */}
+                          </td>
+                          <td>
+                            <p>Date</p>
+                            {/* <p>{<Date/>}</p> */}
+                          </td>
+                          <td>
+                            <button className="btn btn-danger position-absolute" onClick={() => selectTask(task)}>Edit Task</button>
+                            {(() => {
+                              if (task.task_status == "Not Started") {
+                                return <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button>
+                              } else if (task.task_status == "In Progress") {
+                                return <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
+                              }
+                            })()}
+                          </td>
+                        </tr>
+                      )) : undefined}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-        </section>
-        { addModal ? <AddTaskModal open={addModal} setAddModal={setAddModal}/> : undefined }
-        { editModal ? <EditTaskModal open={editModal} setEditModal={setEditModal} setCompletedTaskModal={setCompletedTaskModal} activeTask={activeTask} /> : undefined }
-        { completedTaskModal ? <CompletedTaskModal open={completedTaskModal} setCompletedTaskModal={setCompletedTaskModal}/> : undefined }
-        
-    </div>
-  )
+          </section>
+          {addModal ? <AddTaskModal open={addModal} setAddModal={setAddModal} /> : undefined}
+          {editModal ? <EditTaskModal open={editModal} setEditModal={setEditModal} setCompletedTaskModal={setCompletedTaskModal} activeTask={activeTask} /> : undefined}
+          {completedTaskModal ? <CompletedTaskModal open={completedTaskModal} setCompletedTaskModal={setCompletedTaskModal} /> : undefined}
+      
+        </div>
+      )
+      
 }
 
 
