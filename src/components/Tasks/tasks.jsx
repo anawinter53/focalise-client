@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from '../../contexts'
-import { AddTaskModal } from '../../components'
+import { AddTaskModal, EditTaskModal, CompletedTaskModal } from '../../components'
 import { BsCircle, BsRecordCircleFill, BsFillCheckCircleFill } from 'react-icons/bs';
 
 export default function TasksPage({tasks, setRender}) {
     const { theme } = useTheme()
-    const [modal, setModal] = useState(false)
+    const [addModal, setAddModal] = useState(false)
+    const [editModal, setEditModal] = useState(false)
+    const [completedTaskModal, setCompletedTaskModal] = useState(false)
     useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
-
-
 
   return (
     <div>
@@ -16,7 +16,8 @@ export default function TasksPage({tasks, setRender}) {
             <div className="d-flex aligns-items-center justify-content-center position-relative">
                 <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
                     <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('')}>Back</button>
-                    <button className="btn btn-danger position-absolute top-0 end-0" onClick={() => setModal(true)}>Add Task</button>
+                    <button className="btn btn-danger position-absolute top-0 end-50" onClick={() => setAddModal(true)}>Add Task</button>
+                    <button className="btn btn-danger position-absolute top-0 end-0" onClick={() => setEditModal(true)}>Edit Task</button>
                     <div className="row justify-content-center p-5" style={{}}>  
                         {tasks ? tasks.map((task, i) => (
                             <div key={i} className='row'>
@@ -46,7 +47,9 @@ export default function TasksPage({tasks, setRender}) {
                 </div>            
             </div>
         </section>
-        { modal ? <AddTaskModal open={modal} setModal={setModal}/> : undefined }
+        { addModal ? <AddTaskModal open={addModal} setAddModal={setAddModal}/> : undefined }
+        { editModal ? <EditTaskModal open={editModal} setEditModal={setEditModal} setCompletedTaskModal={setCompletedTaskModal}/> : undefined }
+        { completedTaskModal ? <CompletedTaskModal open={completedTaskModal} setCompletedTaskModal={setCompletedTaskModal}/> : undefined }
     </div>
   )
 }
