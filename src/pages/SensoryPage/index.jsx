@@ -1,9 +1,11 @@
+import { useTheme } from '../../contexts/themes'
 import 'animate.css';
 import { Time, Type, Video } from '../../components';
 import { useState } from 'react';
 import * as Constant from '../../constants'
 
 export default function SensoryPage() {
+    const { theme } = useTheme();
     const [sensoryTime, setSensoryTime] = useState(0)
     const [videoLink, setVideoLink] = useState('')
     const [render, setRender] = useState()

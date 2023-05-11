@@ -16,7 +16,7 @@ export default function CategoryPage({handleTasks, categories}) {
                     <div className="row justify-content-center p-5" style={{}}>  
                         {categories ? categories.map((category, i) => (
                             <div className="col-3 m-1" key={i}>
-                            <button onClick={tasksHandler} name={category} className='btn w-50' style={{backgroundColor: theme.secColor, color: theme.primColor}}>{category}</button>
+                            <button onClick={tasksHandler} name={category} className='btn w-50' style={{backgroundColor: theme.primColor, color: theme.primText}}>{category}</button>
                             </div>
                         )) : undefined
                         }   
