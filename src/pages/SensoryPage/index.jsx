@@ -1,23 +1,15 @@
+import { useTheme } from '../../contexts/themes'
 import 'animate.css';
 import { Time, Type, Video } from '../../components';
 import { useState } from 'react';
 import * as Constant from '../../constants'
 
 export default function SensoryPage() {
+    const { theme } = useTheme();
     const [sensoryTime, setSensoryTime] = useState(0)
     const [videoLink, setVideoLink] = useState('')
     const [render, setRender] = useState()
 
-    // var timerTime = 0
-    // function scrollToTime(){
-    //     window.scrollTo(0, 0)
-    // }
-    // function scrollToType(){
-    // document.getElementById('select-type').scrollIntoView()
-    // }
-    // function scrollToVideoFrame() {
-    //     document.getElementById('video-frame').scrollIntoView()
-    // }
     function handleTime(time) {
         setSensoryTime(time)
         setRender("type")
@@ -51,7 +43,7 @@ export default function SensoryPage() {
     }
 
     return (
-        <div>
+        <div style={{ backgroundColor: `${theme.primColor}` }}>
             <RenderView/>
         </div>
     )

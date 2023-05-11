@@ -153,11 +153,11 @@ export default function ProfilePage() {
   return (
 
     <section>
-      <div className="container py-5">
+      <div className="container py-5" style={{top: '50%', left:'50%', transform: `translate(0%,40%)`}}>
         <div className="row justify-content-start">
-          <div className="col-5" style={{ backgroundColor: theme.secColor }}>
+          <div className="col-5 shadow rounded position-relative" style={{ backgroundColor: theme.secColor }}>
             <div className="m-5">
-              <div className="card-body text-center">
+              <div className="card-body text-center ">
                 <div className="mt-3 mb-4">
                   {selectedImage ? (
                     <img className="img-fluid" style={{ maxWidth: "128px", maxHeight: "128px" }}
@@ -199,7 +199,7 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
-
+          
           <div className="col-4">
             <div className=""  style={{color: theme.primText }}>
               <h2>Account settings</h2>
