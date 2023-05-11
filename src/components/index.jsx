@@ -8,6 +8,8 @@ export { default as Category} from "./Tasks/category"
 export { default as Tasks} from "./Tasks/tasks"
 export { default as AddCategory} from "./Tasks/addCategory"
 export { default as AddTaskModal} from "./AddTaskModal"
+export { default as EditTaskModal} from "./EditTaskModal"
+export { default as CompletedTaskModal} from "./CompletedTaskModal"
 export { default as CategoryChoice} from "./SelectTask/categoryChoice"
 export { default as TaskChoice} from "./SelectTask/taskChoice"
 
