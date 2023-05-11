@@ -11,7 +11,7 @@ export const ImageSelector = (props) => {
 
   return (
     <>
-      <button className="btn" style={{ backgroundColor: theme.accentColor }} onClick={() => setShowModal(true)}>Edit Picture</button>
+      <button className="btn" style={{ backgroundColor: theme.accentColor, color: `${theme.primText}` }} onClick={() => setShowModal(true)}>Edit Picture</button>
 
       {/* <Button className='btn' onClick={() => setShowModal(true)}>Select Profile Image</Button> */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>

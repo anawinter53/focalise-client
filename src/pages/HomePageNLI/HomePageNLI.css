@@ -1,0 +1,85 @@
+.arrow {
+    text-align: center;
+    margin: 8% 0;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .fa-arrow-down {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .fa-arrow-down:before {
+    content: '\f063';
+    font-family: FontAwesome;
+    font-size: 2em;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .greeting {
+    margin-top: 10%;
+  }
+
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background-color: #D17B88;
+    border-radius: 5px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    height: 300px;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    background-color: white;
+  }
+
+#more-info {
+    margin-top: 200px;
+}
+
+.login-button {
+    background-color: white;
+    padding: 15px;
+    border: 3px solid white;
+    border-radius: 5px;
+    color: #D17B88;
+}
+
+.login-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.login-button-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: #D17B88;
+}
+
+

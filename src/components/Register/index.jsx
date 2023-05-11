@@ -4,7 +4,7 @@ import { useTheme } from "../../contexts";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import * as Constant from '../../constants'
 export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState(""); 
   const { username, setUsername, password, setPassword, email, setEmail } =
@@ -42,7 +42,7 @@ export default function Register() {
         }),
       };
       console.log(options)
-      const res = await fetch("http://127.0.0.1:4000/users/register", options);
+      const res = await fetch(Constant.MAIN_URl + "users/register", options);
 
       if (res.ok) {
         console.log(`You have successfully signed up ${username}`);
