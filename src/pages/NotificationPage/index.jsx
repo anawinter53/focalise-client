@@ -215,7 +215,7 @@ function NotificationPage() {
 
 
 
-    return <div className='notification' style={{ backgroundColor: `${theme.primColor}`}}>
+    return <div className='notification' style={{ backgroundColor: `${theme.primColor}` }}>
         <div style={{textAlign: "center", padding: "20 0", margin: "30px"}}>
             <h1 >Workplans page</h1>
             <p>Select a plan for a work session, and receive notifications to keep you on track</p>
@@ -235,8 +235,8 @@ function NotificationPage() {
         </div>
 
 
-        <div className='work-plans' style={{display: "flex", justifyContent: "space-evenly"}}>
-            <div className="container text-center pt-3 shadow rounded position-relative get-started" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, maxWidth: "25%", textAlign: "center"}}>
+        <div className='work-plans center d-flex justify-content-center'>
+            <div className="container pt-3 shadow rounded position-relative get-started" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, maxWidth: "25%", textAlign: "center"}}>
                 <h2>Get started on a task</h2>
                 <p>Getting started is one of the hardest things. Set a timer for just to ten minutes and get one going.</p>
                 
@@ -258,7 +258,6 @@ function NotificationPage() {
                 </form>
             </div>
         </div>
-        {taskId ? <h3 style={{textAlign: "center", margin: "30px"}}>Working on : {taskId.task_name} </h3> : ""}
         <button onClick={() => setRender('categories')} className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`, margin: "30px"}}>Choose a task to work on</button>
         <RenderPopup />
         {/* <button onClick={updateTask}>Update</button> */}
