@@ -56,7 +56,7 @@ useEffect(() => {
             </div>
           </div>
           <button className="btn p-3 mb-5"style={{backgroundColor: theme.secColor}} >
-            <Link className="nav-link" style={{color: theme.secText}} to='/register'>Signup for Focalise</Link>
+            <Link className="" style={{color: theme.secText}} to='/register'>Signup for Focalise</Link>
           </button>
         </section>
       )}
