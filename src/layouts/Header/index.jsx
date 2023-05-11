@@ -1,10 +1,11 @@
-import {Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import { useTheme } from '../../contexts'
 import 'bootstrap/js/dist/dropdown'
 import { MusicPlayer } from "../../components/MusicPlayer"
 
 export default function Header() {
   const { theme, setTheme, themes } = useTheme()
+
   function handleTheme(){
     switch(localStorage.getItem('userTheme')) {
       case 'theme2':
@@ -19,6 +20,7 @@ export default function Header() {
         return setTheme(themes.theme1);
     }
   }
+
   handleTheme()
 
   return (
@@ -66,8 +68,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
-
-    <Outlet/>
+      <Outlet />
     </>
   )
 }

@@ -7,7 +7,9 @@ export default function TaskChoice({tasks, setRender, setTaskId}) {
 
     const handleTask = (e) => {
         e.preventDefault()
-        setTaskId(e.target.parentNode.id)
+        const task_id = e.target.parentNode.id
+        const task = tasks.find(t => t.id = task_id)
+        setTaskId(task)
         setRender('')
     }
 
@@ -27,7 +29,7 @@ export default function TaskChoice({tasks, setRender, setTaskId}) {
                     </div>
                 </div>            
             </div>
-            </section>
+        </section>
     </div>
   )
 }
