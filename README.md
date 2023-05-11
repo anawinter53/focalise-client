@@ -34,12 +34,12 @@ Using Figma we were able to plan out the design for our website before coding it
 
 | Page | Description|
 |------|------------|
-| Homepage | Homepage.. |
-| Login/Sign Up | Dynamic interactive page allows users to either create an account or login with an existing account. |
+| Homepage | Dynamically renders depending on if user is logged in, showing tasks if user has logged in & has tasks |
+| Login/Sign Up | Page allows users to either create an account or login with an existing account |
 | Sensory Room | Users are able to watch videos of either: calming music, guided meditation or live animal cam |
 | Task Management | Users are able to view and edit their tasks in categories with tasks organised by priority level |
-| Body Doubling Room | . |
-| Profile | . |
+| Workplan | Users can set a timer of differing lengths for setting a block of work to be done |
+| Profile | Users can amend their profile details, change the theme of the website and font size |
 
 
 ## Required software & accounts
