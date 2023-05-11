@@ -152,10 +152,10 @@ export default function ProfilePage() {
   }
   return (
 
-    <section style={{ backgroundColor: `${theme.primColor}` }}>
+    <section>
       <div className="container py-5">
         <div className="row justify-content-start">
-          <div className="col-5" style={{ backgroundColor: `${theme.primBG}` }}>
+          <div className="col-5" style={{ backgroundColor: theme.secColor }}>
             <div className="m-5">
               <div className="card-body text-center">
                 <div className="mt-3 mb-4">
@@ -189,11 +189,11 @@ export default function ProfilePage() {
                   {/* <button className="btn" style={{ backgroundColor: theme.accentColor }} onClick={handleImageSelect}>Edit Picture</button> */}
 
                 </div>
-                <h4 className="mb-2">{username}</h4>
-                <p className="text-muted mb-4">{email}</p>
+                <h4 className="mb-2" style={{ color: theme.secText }}>{username}</h4>
+                <p className="mb-4" style={{ color: theme.secText }}>{email}</p>
                 <duv className='d-flex'>
-                  <button type="" className="btn m-3" data-bs-toggle="modal" data-bs-target="#saveSettings" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Update Profile</button>
-                  <button className="btn m-3" data-bs-toggle="modal" data-bs-target="#changePassword" style={{ backgroundColor: theme.accentColor, color: `${theme.primText}` }}>Change Password</button>
+                  <button type="" className="btn m-3" data-bs-toggle="modal" data-bs-target="#saveSettings" style={{ backgroundColor: theme.primColor, color: theme.secColor }}>Update Profile</button>
+                  <button className="btn m-3" data-bs-toggle="modal" data-bs-target="#changePassword" style={{ backgroundColor: theme.primColor, color: theme.secColor }}>Change Password</button>
                   
                 </duv>
               </div>
@@ -201,11 +201,11 @@ export default function ProfilePage() {
           </div>
 
           <div className="col-4">
-            <div className="">
+            <div className=""  style={{color: theme.primText }}>
               <h2>Account settings</h2>
               <ColourChanger onColorChange={handleBackgroundColorChange} />
               <FontResize onFontResize={handleFontResize} />
-              <button type="" className="btn mb-3" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>Save Settings</button>
+              <button type="" className="btn mb-3" style={{ backgroundColor: `${theme.secColor}`, color: `${theme.primColor}` }}>Save Settings</button>
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@ export default function ProfilePage() {
                 <input className="form-control" type='password' id="txtPassword" onChange={handleInput}></input>
               </div>
 
-              <button onClick={handleSubmit} id='btnSubmit' type="submit" className="btn mb-3" data-bs-dismiss="modal" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>submit</button>
+              <button onClick={handleSubmit} id='btnSubmit' type="submit" className="btn mb-3" data-bs-dismiss="modal" style={{ backgroundColor: `${theme.primColor}`, color: `${theme.secColor}` }}>submit</button>
 
             </div>
 
@@ -259,7 +259,7 @@ export default function ProfilePage() {
                 <input className="form-control" type='password' id="ConfirmPassword" onChange={handleInput}></input>
               </div>
 
-              <button onClick={handleChangePassword} id='btnSubmitChangePassword' type="submit" className="btn mb-3" data-bs-dismiss="modal" style={{ backgroundColor: `${theme.accentColor}`, color: `${theme.primText}` }}>submit</button>
+              <button onClick={handleChangePassword} id='btnSubmitChangePassword' type="submit" className="btn mb-3" data-bs-dismiss="modal" style={{ backgroundColor: `${theme.primColor}`, color: `${theme.secColor}` }}>submit</button>
 
             </div>
 
@@ -268,48 +268,6 @@ export default function ProfilePage() {
       </div>
       <ToastContainer />
     </section >
-    // <div classNameName="profile-page-body" style={{backgroundColor, color: fontColor, fontSize}}>
-    //   <h1 classNameName="text-center mt-5">Profile</h1>
-    //   <div classNameName="container">
-    //     <div classNameName="row">
-    //       <div classNameName="col-md-6 position-relative">
-    //         {selectedImage ? (
-    //           <img
-    //             src={selectedImage}
-    //             alt="Your Image"
-    //             classNameName="profile-image"
-    //           />
-    //         ) : (
-    //           <img
-    //             src="https://via.placeholder.com/200x200"
-    //             alt="Placeholder Image"
-    //             classNameName="profile-image"
-    //           />
-    //         )}
-    //         <div classNameName="position-absolute bottom-10 start-50 translate-middle-x">
-    //           <ImageSelector
-    //             onSelect={handleImageSelect}
-    //             image1="https://via.placeholder.com/200x200"
-    //             image2="https://via.placeholder.com/300x300"
-    //           />
-    //         </div>
-    //         <h3 classNameName="profileName">Profile Name</h3>
-    //         <h3 classNameName="extraInfo">Email Address</h3>
-    //       </div>
-    //       <div classNameName="col-md-6">
-    //         <h2>Screen settings</h2>
-    //       <ColourChanger onColorChange={handleBackgroundColorChange}/>
-    //       <FontColourChanger onFontChange={handleFontColorChange}/>
-    //       <FontResize onFontResize={handleFontResize}/>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <section>
-    //     <div classNameName="air air1"></div>
-    //     <div classNameName="air air2"></div>
-    //     <div classNameName="air air3"></div>
-    //     <div classNameName="air air4"></div>
-    //   </section>
-    // </div>
+    
   );
 }
