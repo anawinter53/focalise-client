@@ -5,8 +5,6 @@ export default function EditTaskModal({open, setEditModal, setCompletedTaskModal
     const { theme } = useTheme()
     if (!open) return null
 
-
-
     return (
         <div className='position-absolute text-center shadow p-3 rounded position-absolute' style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`, top: '50%', left: '50%', transform: `translate(-50%,50%)`, zIndex: 999}}>
             <h1>Edit Task</h1>
@@ -14,19 +12,19 @@ export default function EditTaskModal({open, setEditModal, setCompletedTaskModal
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
-                    <input type="text" className="form-control" id="name" value={activeTask.task_name} required></input>
+                    <input type="text" className="form-control" id="name" defaultValue={activeTask.task_name} required></input>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <input type="text" className="form-control" id="description" value={activeTask.task_desc} required></input>
+                    <input type="text" className="form-control" id="description" defaultValue={activeTask.task_desc} required></input>
                 </div>
                 <div className="form-check">
                     <label className="form-group" htmlFor="URL">URL</label>
-                    <input type="text" className="form-control" id="URL" value={activeTask.task_url}></input>
+                    <input type="text" className="form-control" id="URL" defaultValue={activeTask.task_url}></input>
                 </div>
                 <div className="form-check">
                     <label className="form-group" htmlFor="task-date">Date to complete by</label>
-                    <input type="date" className="form-control" id="task-date" value={activeTask.task_deadline}></input>
+                    <input type="date" className="form-control" id="task-date" defaultValue={activeTask.task_deadline}></input>
                 </div>
                 {<UpdateButton activeTask={activeTask}/>}
                 <button type="submit" className="btn btn-primary">Update Task</button>
