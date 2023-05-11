@@ -14,7 +14,7 @@ export default function CategoryChoice({handleTasks, categories}) {
       <section id="select-task-category" style={{height: '100vh'}}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
                 <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
-                    <h1>Select a category: </h1>
+                    <h2>Select a category: </h2>
                     <div className="row justify-content-center p-5" style={{}}>  
                         {categories ? categories.map((category, i) => (
                             <div className="col-3 m-1" key={i}>

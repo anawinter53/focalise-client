@@ -16,10 +16,11 @@ function NotificationPage() {
     const [deadline, setDeadline] = useState("00:00")
     const [time, setTime] = useState("00:00")
     const [tasks, setTasks] = useState([])
-    const [taskId, setTaskId] = useState({})
+    const [taskId, setTaskId] = useState()
     const [categories, setCategories] = useState('')
     const [render, setRender] = useState('')
     const [id, setId] = useState()
+    const [workPlan, setWorkPlan] = useState('')
 
     useEffect( () => {
         const getId = () => {
@@ -131,11 +132,13 @@ function NotificationPage() {
 
     const handleStartingSubmit = () => {
         setCountDown(600)
+        setWorkPlan('starting')
     }
 
     const handleSessionSubmit = () => {
         setCountDown(3600)
         setBreakCountDown(1200)
+        setWorkPlan('session')
     }
 
     const handleDeadlineSubmit = (e) => {
@@ -147,7 +150,10 @@ function NotificationPage() {
         const seconds = (end_time - start_time) / 1000
         if (seconds > 0) {
             setCountDown(seconds)
-            setBreakCountDown(1200)
+            setWorkPlan('deadline')
+            if (seconds > 2400) {
+                setBreakCountDown(1200)
+            }
         }
         
     }
@@ -179,8 +185,8 @@ function NotificationPage() {
     }
 
     const getTasks = async (category) => {
-        // const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/" + category + "/Not Started");
-        const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/status/Not Started")
+        const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/" + category);
+        // const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/status/Not Started")
         const data = await res.json();
         setTasks(data)
     }
@@ -195,7 +201,7 @@ function NotificationPage() {
     }
 
     const updateTask = async () => {
-        const task = tasks.find(t => t.id = taskId)
+        const task = taskId
         const options = {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
@@ -209,7 +215,7 @@ function NotificationPage() {
 
 
 
-    return <div className='notification' style={{ backgroundColor: `${theme.primColor}` }}>
+    return <div className='notification' style={{ backgroundColor: `${theme.primColor}`}}>
         <div style={{textAlign: "center", padding: "20 0", margin: "30px"}}>
             <h1 >Workplans page</h1>
             <p>Select a plan for a work session, and receive notifications to keep you on track</p>
@@ -245,13 +251,14 @@ function NotificationPage() {
                 <h2>Work to a deadline</h2>
                 <p>Got a deadline to work to? Start a count down, and get reminders to take breaks along the way</p>
                 <form onSubmit={handleDeadlineSubmit}>
-                    <label htmlFor='deadline'>Set end time:</label>
-                    <input type='time' id='deadline' onChange={(e) => setDeadline(e.target.value)}/>
-                    {(deadline < time) ? <p>Please enter a time later than the current</p> : ""}
+                    <label htmlFor='deadline'>Set end time: </label>
+                    <input type='time' id='deadline' onChange={(e) => setDeadline(e.target.value)} style={{margin: "5px", border: "2px solid black", borderRadius: "5px", backgroundColor: `${theme.primBG}`, padding: "0 3px"}}/>
+                    {(deadline < time && deadline != "00:00") ? <p>Please enter a time later than the current</p> : ""}
                     <button type='submit' className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`}}>Start</button>
                 </form>
             </div>
         </div>
+        {taskId ? <h3 style={{textAlign: "center", margin: "30px"}}>Working on : {taskId.task_name} </h3> : ""}
         <button onClick={() => setRender('categories')} className='btn w-50' style={{backgroundColor: `${theme.accentColor}`, color: `${theme.primText}`, margin: "30px"}}>Choose a task to work on</button>
         <RenderPopup />
         {/* <button onClick={updateTask}>Update</button> */}
