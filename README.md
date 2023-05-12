@@ -58,6 +58,36 @@ Using Figma we were able to plan out the design for our website before coding it
 ## Usage
 
 ### Home page:
+<p align="center">
+<img src="https://github.com/anawinter53/i-am-the-walrus-client/blob/dev/documentation/Capture1.PNG" width=75% height=75%>
+</p>
+<br>
+
+<p align="center">
+<img src="https://github.com/anawinter53/i-am-the-walrus-client/blob/dev/documentation/Capture2.PNG" width=75% height=75%>
+</p>
+<br>
 
 
 ### Login/Sign Up page:
+<p align="center">
+<img src="https://github.com/anawinter53/i-am-the-walrus-client/blob/dev/documentation/Capture3.PNG" width=75% height=75%>
+</p>
+<br>
+
+
+### Other pages:
+<p align="center">
+<img src="https://github.com/anawinter53/i-am-the-walrus-client/blob/dev/documentation/Capture4.PNG" width=75% height=75%>
+</p>
+<br>
+
+<p align="center">
+<img src="https://github.com/anawinter53/i-am-the-walrus-client/blob/dev/documentation/Capture5.PNG" width=75% height=75%>
+</p>
+<br>
+
+<p align="center">
+<img src="https://github.com/anawinter53/i-am-the-walrus-client/blob/dev/documentation/Capture6.PNG" width=75% height=75%>
+</p>
+<br>
