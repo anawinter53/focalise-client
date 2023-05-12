@@ -8,10 +8,10 @@ export default function Header() {
 
   return (
     <>
-      <nav className="navbar sticky-top navbar-expand-lg" style={{padding: '10px'}}>
-        <div className="container">
-          <a className="navbar-brand">F  O C A L I S E</a>
-              {token || localStorage.token ? <><button className="nav-item"><a className="nav-link"><Link className="nav-link" to={"/logout"}>Logout</Link></a></button></> : <></>}
+      <nav className="navbar sticky-top">
+        <div className="nav-container">
+          <p className="navbar-brand">F  O C A L I S E</p>
+              {token || localStorage.token ? <><Link className="nav-item link-button" to={"/logout"}>Logout</Link></> : <></>}
         </div>
       </nav>
     <Outlet/>

@@ -8,7 +8,7 @@ export default function TasksPage() {
     const { theme } = useTheme();
     const [id, setId] = useState('')
     const [categories, setCategories] = useState([])
-    const [tasks, setTasks] = useState('')
+    const [tasks, setTasks] = useState([])
     const [render, setRender] = useState()
 
     useEffect( () => {
@@ -17,27 +17,27 @@ export default function TasksPage() {
             user_id ? setId(user_id) : undefined
         }
         getId()
+        console.log('id created')
       }, []);
 
       useEffect(() => {
         const getCategories = async (id) => {
             console.log(id)
-            const res = await fetch(Constant.MAIN_URl + "tasks/user/" + id + "/categories");
+            const res = await fetch(Constant.MAIN_URl + `tasks/user/${id}/categories`);
             const category_data = await res.json();
             if (category_data.length == 0) {
                 setRender("")
             } else {
                 setCategories(category_data)
                 setRender("category")
-            }
-            
+            }  
         }
-        getCategories(id)
+        id ? getCategories(id) : undefined
       }, [id]);
 
     function handleTasks(category) {
         getTasks(category)
-        console.log(tasks)
+        //console.log(tasks)
         setRender("tasks")
         RenderTasksView()
     } 
@@ -49,7 +49,7 @@ export default function TasksPage() {
     function RenderTasksView() {
 
         if (render === 'tasks') {
-            return <Tasks tasks={tasks} setRender={setRender} />
+            return <Tasks tasks={tasks} setTasks={setTasks} setRender={setRender} />
         }
         else if (render === 'category') {
             return <Category handleTasks={handleTasks} categories={categories} />
@@ -60,7 +60,7 @@ export default function TasksPage() {
     }
 
     return (
-        <div style={{ backgroundColor: `${theme.primColor}` }}>
+        <div>
             <RenderTasksView/>
         </div>
     )

@@ -45,7 +45,7 @@ export default function Register() {
       const res = await fetch(Constant.MAIN_URl + "users/register", options);
 
       if (res.ok) {
-        console.log(`You have successfully signed up ${username}`);
+        //console.log(`You have successfully signed up ${username}`);
         window.location.assign("/login");
       } else {
         console.log("error in signup");
@@ -63,7 +63,7 @@ export default function Register() {
   return ( 
    <section>
         <div id="login-page" className="d-flex justify-content-center align-items-center">
-          <div className="p-5 m-5 shadow rounded" style={{backgroundColor:`${theme.primBG}`}}>
+          <div className="p-5 m-5 shadow rounded" style={{backgroundColor: theme.secColor, color: theme.primColor}}>
               <form>
                   <div className="mb-3">
                     <label htmlFor="username" className="form-label">User Name</label>
@@ -82,9 +82,9 @@ export default function Register() {
                     <label htmlFor="Password2" className="form-label">Password</label>
                     <input  onChange={confirmPasswordHandler} type="password" className="form-control" id="Password2"/>
                   </div>
-                  <button onClick={handleSubmit} type="submit" className="btn border" style={{backgroundColor: `${theme.accentColor}`, color:`${theme.primText}`}}>Submit</button>
+                  <button onClick={handleSubmit} type="submit" className="btn" style={{backgroundColor: theme.primColor, color: theme.primText}}>Submit</button>
                 </form>
-                <div className='mt-3'><a  href="/login">Have an account?</a></div>
+                <div className='mt-3'><a  href="/login" style={{color: theme.secText}}>Have an account?</a></div>
           </div>
         </div>
         <ToastContainer />

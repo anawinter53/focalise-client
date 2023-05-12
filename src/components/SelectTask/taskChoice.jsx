@@ -3,20 +3,21 @@ import { useTheme } from '../../contexts'
 
 export default function TaskChoice({tasks, setRender, setTaskId}) {
     const { theme } = useTheme()
-    useEffect(() => { document.body.style.backgroundColor = `${theme.primColor}` }, )
 
     const handleTask = (e) => {
         e.preventDefault()
-        setTaskId(e.target.parentNode.id)
+        const task_id = e.target.parentNode.id
+        const task = tasks.find(t => t.id == task_id)
+        setTaskId(task)
         setRender('')
     }
 
   return (
     <div>
-      <section id="select-task-category" style={{height: '100vh'}}>
-            <div className="d-flex aligns-items-center justify-content-center position-relative">
-                <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: `${theme.primBG}`, color: `${theme.primText}`,  top: '50%', left: '50%', transform: `translate(-50%,50%)`}}>
-                    <button className="btn btn-success position-absolute top-0 start-0" onClick={() => setRender('categories')}>Back</button>
+      <section id="select-task-category">
+            <div className="d-flex aligns-items-center justify-content-center">
+                <div className="container text-center pt-3 shadow rounded mb-3" style={{backgroundColor: `${theme.primColor}`, color: `${theme.primText}`}}>
+                    <button className="btn top-0 start-0" onClick={() => setRender('categories')} style={{backgroundColor: `${theme.secColor}`, color: `${theme.secText}`}}>Back</button>
                     <div className="row justify-content-center p-5" style={{}} >  
                         {tasks ? tasks.map((t, i) => (
                             <div key={i} id={t.task_id} onClick={handleTask} >
@@ -27,7 +28,7 @@ export default function TaskChoice({tasks, setRender, setTaskId}) {
                     </div>
                 </div>            
             </div>
-            </section>
+        </section>
     </div>
   )
 }

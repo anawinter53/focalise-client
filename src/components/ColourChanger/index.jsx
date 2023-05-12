@@ -16,6 +16,7 @@ export default function ColourChanger (props) {
       const colorOptions = []
 
        for (let op in themes) {
+            //const name = themes[op][name]
           colorOptions.push({'label':op, 'value': op})
         }
         //console.log(colorOptions)

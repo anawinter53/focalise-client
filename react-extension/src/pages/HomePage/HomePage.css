@@ -1,37 +1,28 @@
 .landing-page-body {
     margin-top: 0;
     text-align: center;
-    background-color: #FFF0CA;
+    background-color: #E2E4F6;
 }
 
 
 .page-heading {
     margin-top: 100px;
+    padding: 10px;
     color: black;
     font-family: monospace;
     align-items: center;
 }
 
-.login-button {
-    margin: 5px solid black;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #FFF0CA;
-}
-
-.login-button:hover {
-    transform: scale(1.05);
-    background-color: black;
-}
-
-.login-link {
+.link-button {
     text-decoration: none;
+    font-family: monospace;
     color: black;
     font-weight: bold;
-    font-family: monospace;
-    font-size: 15px;
-}
-
-.login-link:hover {
-    color: #FFF0CA;
+  }
+  
+.link-button:hover {
+transform: scale(1.05);
+cursor: pointer;
+background-color: black;
+color: #E2E4F6;
 }

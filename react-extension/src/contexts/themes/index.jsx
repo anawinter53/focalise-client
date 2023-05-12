@@ -2,13 +2,9 @@ import { useState, useContext, createContext } from "react";
 const ThemeContext = createContext();
 const themes = {
 
-    theme1: {'primColor': '#FFFAED', 'SecColor': '#DAFAB0', 
+    theme1: {'primColor': '#E2E4F', 'SecColor': '#DAFAB0', 
     'primText': '#191919', 'secText': '#ffffff', 'primBG': '#FFF0CA', 
-    'secBG': "#D1D184", 'accentColor': '#FFB4DA', 'theme': 1},
-
-    theme2:  { 'primColor': '#DAFAB0', 'SecColor': '#FFFAED', 
-    'primText': '#ffffff ', 'secText': '#191919', 'primBG': '#D1D184', 
-    'secBG': "#FFF0CA", 'accentColor': '#7B7AAF', 'theme': 2 }
+    'secBG': "#D1D184", 'accentColor': '#FFB4DA', 'theme': 1}
 }
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(themes.theme1);

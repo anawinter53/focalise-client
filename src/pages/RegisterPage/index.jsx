@@ -23,7 +23,7 @@ export default function RegisterPage() {
   }, []);
 
   return (
-    <div className="register-page-body" style={{backgroundColor, color: fontColor, fontSize}}>
+    <div className="register-page-body">
         <Register />
         <section>
         <div className='air air1'></div>

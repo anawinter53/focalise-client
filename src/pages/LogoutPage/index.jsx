@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import * as Constant from '../../constants'
+import { useTheme } from '../../contexts';
 
 export default function LogoutPage() {
-  
+  const {setTheme} = useTheme()
   
   useEffect(() => {
       async function logout() {
@@ -15,6 +16,7 @@ export default function LogoutPage() {
         await fetch(Constant.MAIN_URl + "users/logout", options)
         localStorage.clear();
         window.location.assign("/")
+        setTheme('Lavender')
       }
       logout()
     },[])

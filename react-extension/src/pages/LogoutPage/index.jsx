@@ -11,8 +11,8 @@ export default function LogoutPage() {
   
   useEffect(() => {
       async function logout() {
+        await fetch("http://127.0.0.1:4000/users/logout", options)
         localStorage.clear();
-        await fetch("http://localhost:4000/users/logout", options)
         navigate("/")
       }
       logout()
