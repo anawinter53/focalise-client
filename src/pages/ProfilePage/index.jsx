@@ -153,7 +153,7 @@ export default function ProfilePage() {
   return (
 
     <section>
-      <div className="container py-5" style={{top: '50%', left:'50%', transform: `translate(0%,40%)`}}>
+      <div className="container mt-5">
         <div className="row justify-content-start">
           <div className="col-5 shadow rounded position-relative" style={{ backgroundColor: theme.secColor }}>
             <div className="m-5">

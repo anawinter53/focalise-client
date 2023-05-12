@@ -14,20 +14,21 @@ export default function TasksPage({tasks, setTasks, setRender}) {
 
     const selectTask = (task) => {
         setEditModal(true)
+        setAddModal(false)
         setActiveTask(task)
+    }
+
+    const openAddModal = () => {
+        setAddModal(true)
+        setEditModal(false)
     }
 
     const updateStatus = async (e) => {
         e.preventDefault()
-        console.log(tasks)
         const task_id = e.target.value
-        console.log(task_id)
         let items = tasks
-        console.log(items)
-        const task = items.find(t => t.task_id = task_id)
-        console.log(task)
+        const task = items.find(t => t.task_id == task_id)
         const status = task.task_status
-        console.log(status)
         let newStatus
         if (status === "Not Started") {
             newStatus = "In Progress"
@@ -38,25 +39,23 @@ export default function TasksPage({tasks, setTasks, setRender}) {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             // body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: newStatus})
-            body: JSON.stringify({task_status: status})
+            body: JSON.stringify({task_status: newStatus})
         }
-        const res = await fetch(Constant.MAIN_URl + "tasks/" + task_id, options)
+        const res = await fetch(Constant.MAIN_URl + "tasks/" + task_id + "/status", options)
         const data = await res.json()
         console.log(data)
         
-        
-        // setTasks(... tasks[0].status = "In Progress")
-        console.log(items)
         const index = items.findIndex(t => t.task_id == task_id)
-        console.log(index)
-        items[index].status = newStatus
-        console.log(items)
+        items[index].task_status = newStatus
         setTasks(items)
-        console.log(tasks)
     }
 
-    const completeTask = (e) => {
-        e.preventDefault()
+    const convertDate = (date) => {
+        let deadline = new Date(date)
+        console.log(deadline)
+        deadline = deadline.toISOString().split('T')[0]
+        console.log(deadline)
+        return deadline
     }
 
     return (
@@ -64,17 +63,17 @@ export default function TasksPage({tasks, setTasks, setRender}) {
           <section id="select-task-category" style={{ height: '100vh' }}>
             <div className="d-flex aligns-items-center justify-content-center position-relative">
               <div className="container text-center pt-3 shadow rounded position-absolute" style={{ backgroundColor: theme.secColor, color: theme.primColor, top: '50%', left: '50%', transform: `translate(-50%,50%)` }}>
-                <button className="btn btn-success position-absolute top-1 start-0" onClick={() => setRender('')}>Back</button>
-                <button className="btn btn-danger position-absolute top-1 end-0" onClick={() => setAddModal(true)}>Add Task</button>
-                <div className="row justify-content-center p-5" style={{}}>
-                  <table className="table">
+                <button className="btn position-absolute top-1 start-0 ms-3" onClick={() => setRender('')} style={{ backgroundColor: theme.primColor, color: theme.secColor }}>Back</button>
+                <button className="btn btn-primary position-absolute top-1 end-0 me-3" onClick={openAddModal}>Add Task</button>
+                <div className="row justify-content-center p-5">
+                  <table className="table" style={{color: theme.primColor }}>
                     <thead>
                       <tr>
                         <th></th>
                         <th>Task Name</th>
                         <th>Task Description</th>
                         <th>Task URL</th>
-                        <th>Urgent</th>
+                        {/* <th>Urgent</th> */}
                         <th>Date</th>
                         <th></th>
                       </tr>
@@ -94,21 +93,24 @@ export default function TasksPage({tasks, setTasks, setRender}) {
                           <td>
                             <p>{task.task_url}</p>
                           </td>
-                          <td>
+                          {/* <td>
                             <p>Urgent</p>
-                            {/* <p>{<UrgentStatus/>}</p> */}
-                          </td>
+                            {<p>{<UrgentStatus/>}</p>}
+                          </td> */}
                           <td>
-                            <p>Date</p>
-                            {/* <p>{<Date/>}</p> */}
+                            {(() => {
+                                let date = new Date(task.task_deadline)
+                                date = date.toISOString().split('T')[0]
+                                return <p>{date}</p>
+                            })()}
                           </td>
-                          <td>
-                            <button className="btn btn-danger position-absolute" onClick={() => selectTask(task)}>Edit Task</button>
+                          <td className='d-flex'>
+                            <button className="btn btn-outline-danger m-1 " onClick={() => selectTask(task)}>Edit Task</button>
                             {(() => {
                               if (task.task_status == "Not Started") {
-                                return <button id="start-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as started</button>
+                                return <button id="start-btn" className='btn btn-outline-success' value={task.task_id} onClick={updateStatus}>Mark as started</button>
                               } else if (task.task_status == "In Progress") {
-                                return <button id="complete-btn" className='btn btn-primary' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
+                                return <button id="complete-btn" className='btn btn-outline-success' value={task.task_id} onClick={updateStatus}>Mark as complete</button>
                               }
                             })()}
                           </td>
