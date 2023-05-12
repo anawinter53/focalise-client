@@ -205,9 +205,9 @@ function NotificationPage() {
         const options = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: "In Progress" })
+            body: JSON.stringify({ task_status: "In Progress" })
         }
-        const res = await fetch(Constant.MAIN_URl + "tasks/" + taskId, options)
+        const res = await fetch(Constant.MAIN_URl + "tasks/" + taskId + "/status", options)
         const data = await res.json()
         console.log(data)
     }
