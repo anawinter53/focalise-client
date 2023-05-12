@@ -26,7 +26,7 @@ export default function Login() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username, password: password }),
       };
-      const res = await fetch("https://focalise-backend.onrender.com/users/login", options);
+      const res = await fetch("http://127.0.0.1:4000/users/login", options);
       const data = await res.json();
       setToken(data.token);
       setID(data.id)

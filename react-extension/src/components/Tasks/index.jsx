@@ -6,7 +6,7 @@ export default function Tasks() {
 
   const getTasks = async () => {
     const id = localStorage.id
-    const res = await fetch(`https://focalise-backend.onrender.com/tasks/user/${id}`);
+    const res = await fetch(`http://127.0.0.1:4000/tasks/user/${id}`);
     const data = await res.json();
     setTasks(data)
   };

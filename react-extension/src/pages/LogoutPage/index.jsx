@@ -11,7 +11,7 @@ export default function LogoutPage() {
   
   useEffect(() => {
       async function logout() {
-        await fetch("https://focalise-backend.onrender.com/users/logout", options)
+        await fetch("http://127.0.0.1:4000/users/logout", options)
         localStorage.clear();
         navigate("/")
       }
