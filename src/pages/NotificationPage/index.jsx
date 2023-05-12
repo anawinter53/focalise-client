@@ -1,5 +1,5 @@
 import addNotification from 'react-push-notification'
-import { Notifications} from 'react-push-notification'
+import { Notifications } from 'react-push-notification'
 import { useEffect, useState } from 'react'
 import { CategoryChoice, TaskChoice } from '../../components'
 import * as Constant from '../../constants'
@@ -9,7 +9,7 @@ import 'animate.css';
 
 function NotificationPage() {
     const { theme } = useTheme();
-    
+
     const [countDown, setCountDown] = useState(null)
     const [breakCountDown, setBreakCountDown] = useState(null)
     const [breakTimer, setBreakTimer] = useState(null)
@@ -22,13 +22,13 @@ function NotificationPage() {
     const [id, setId] = useState()
     const [workPlan, setWorkPlan] = useState('')
 
-    useEffect( () => {
+    useEffect(() => {
         const getId = () => {
             const user_id = localStorage.getItem("id");
             user_id ? setId(user_id) : undefined
         }
         getId()
-      }, []);
+    }, []);
 
     useEffect(() => {
         const getCategories = async (id) => {
@@ -39,7 +39,7 @@ function NotificationPage() {
         if (id) {
             getCategories(id)
         }
-      }, [id]);
+    }, [id]);
 
     useEffect(() => {
         let interval
@@ -55,11 +55,11 @@ function NotificationPage() {
                 updateTask()
             }
         }
-    
+
         return () => {
-          clearInterval(interval);
+            clearInterval(interval);
         };
-      }, [countDown]);
+    }, [countDown]);
 
     const sendWorkFinishedNotification = () => {
         addNotification({
@@ -84,11 +84,11 @@ function NotificationPage() {
             setBreakCountDown(null)
             setBreakTimer(300)
         }
-    
+
         return () => {
-          clearInterval(interval);
+            clearInterval(interval);
         };
-      }, [breakCountDown]);
+    }, [breakCountDown]);
 
     const sendStartBreakNotification = () => {
         addNotification({
@@ -115,11 +115,11 @@ function NotificationPage() {
             setBreakTimer(null)
             setBreakCountDown(1200)
         }
-    
+
         return () => {
-          clearInterval(interval);
+            clearInterval(interval);
         };
-      }, [breakTimer]);
+    }, [breakTimer]);
 
 
     const sendBreakFinishedNotification = () => {
@@ -155,7 +155,7 @@ function NotificationPage() {
                 setBreakCountDown(1200)
             }
         }
-        
+
     }
 
     useEffect(() => {
@@ -168,15 +168,15 @@ function NotificationPage() {
             }
             if (parseInt(minutes) < 10) {
                 minutes = '0' + minutes
-            }            
+            }
             setTime(hours + ":" + minutes)
 
         }, 6000)
         return () => {
-          clearInterval(interval);
+            clearInterval(interval);
         };
-        
-      }, [time]);
+
+    }, [time]);
 
 
     const handleTasks = (category) => {
@@ -194,7 +194,7 @@ function NotificationPage() {
 
     const RenderPopup = () => {
         if (render === 'categories') {
-            return <CategoryChoice handleTasks={handleTasks} categories={categories}/>
+            return <CategoryChoice handleTasks={handleTasks} categories={categories} />
         } else if (render === 'tasks') {
             return <TaskChoice tasks={tasks} setRender={setRender} setTaskId={setTaskId} />
         }
@@ -204,8 +204,8 @@ function NotificationPage() {
         const task = taskId
         const options = {
             method: "PUT",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: "In Progress"})
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ category_name: task.category_name, task_name: task.task_name, task_url: task.task_url, task_desc: task.task_desc, task_deadline: task.task_deadline, task_status: "In Progress" })
         }
         const res = await fetch(Constant.MAIN_URl + "tasks/" + taskId, options)
         const data = await res.json()
@@ -216,57 +216,66 @@ function NotificationPage() {
 
 
     return (
-    <div>
-        <section id="workpage" style={{height: '100vh'}}>
-            <div className="d-flex aligns-items-center justify-content-center position-relative" >
-                <div className="container text-center pt-3 shadow rounded position-absolute" style={{backgroundColor: theme.secColor, color: theme.primColor,  top: '50%', transform: `translate(0%,40%)`}}>
-                    <div className='notification' style={{}}>
-                        <div style={{textAlign: "center", padding: "20 0", margin: "30px"}}>
-                            <h1 >Workplans page</h1><br></br>
-                            <h2>Select a plan for a work session, and receive notifications to keep you on track</h2>
+            <section id="workpage" className='my-3'>
+                <div>
+                    <div className="container pt-3 shadow rounded" style={{ backgroundColor: theme.secColor, color: theme.primColor}}>
+                        <div className='notification text-center' style={{}}>
+                            <div className='text-center'>
+                                <h3>Workplans page</h3><br></br>
+                                <p>Select a plan for a work session, and receive notifications to keep you on track</p>
+                            </div>
+                            <div className='d-flex timers' style={{ justifyContent: "space-evenly", margin: "30px" }}>
+                                <div >
+                                    {countDown ? <h4>Time Remaining: {Math.floor(countDown / 3600)} : {Math.floor((countDown % 3600) / 60)} : {countDown % 60}</h4> : ""}
+                                </div>
+                                <div >
+                                    {breakCountDown ? <h4>Time until next break: {Math.floor(breakCountDown / 60)} : {breakCountDown % 60}</h4> : ""}
+                                </div>
+                                <div>
+                                    {breakTimer ? <h4>Time left of break: {Math.floor(breakTimer / 60)} : {breakTimer % 60}</h4> : ""}
+                                </div>
+                            </div>
+                            <div className='work-plans d-flex'>
+                                <div className="card get-started m-2" style={{ backgroundColor: theme.primColor, color: theme.primText }}>
+                                    <div className='card-body'>
+                                        <h5 className='card-title'>Get started on a task</h5>
+                                        <p className='card-text'>Getting started is one of the hardest things. Set a timer for just to ten minutes and get one going.</p>
+
+                                        <button onClick={handleStartingSubmit} className='btn' style={{ backgroundColor: theme.secColor, color: theme.secText }}>Start</button>
+                                    </div>
+                                </div>
+                                <div className="card work-session m-2" style={{ backgroundColor: theme.primColor, color: theme.primText }}>
+                                    <div className='card-body'>
+                                        <h5 className='card-title'>Session of work</h5>
+                                        <p>Set a timer for an hour, with regular breaks in the middle.</p>
+                                        <button onClick={handleSessionSubmit} className='btn' style={{ backgroundColor: theme.secColor, color: theme.secText }}>Start</button>
+                                    </div>
+                                </div>
+                                <div className="card deadline m-2" style={{ backgroundColor: theme.primColor, color: theme.primText }}>
+                                    <div className='card-body'>
+                                        <h5 className='card-title'>Work to a deadline</h5>
+                                        <p className='card-text'>Got a deadline to work to? Start a count down, and get reminders to take breaks along the way</p>
+                                        <form onSubmit={handleDeadlineSubmit}>
+                                        <div className="mb-3">
+                                            <label htmlFor='deadline' className='form-label'>Set end time: </label>
+                                            <input className='form-control' type='time' id='deadline' onChange={(e) => setDeadline(e.target.value)} />
+                                            {(deadline < time && deadline != "00:00") ? <p>Please enter a time later than the current</p> : ""}
+                                            </div>
+                                            <button type='submit' className='btn' style={{ backgroundColor: theme.secColor, color: theme.secText }}>Start</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                            { taskId ? <h3>Working on: {taskId.task_name}</h3> : ""}
+                            <button onClick={() => setRender('categories')} className='btn' style={{ backgroundColor: theme.primColor, color: theme.primText, margin: "30px" }}>Choose a task to work on</button>
+                            <RenderPopup />
                         </div>
-                        <div className='d-flex timers' style={{justifyContent: "space-evenly", margin: "30px"}}>
-                            <div >
-                                {countDown ? <h4>Time Remaining: {Math.floor(countDown / 3600)} : {Math.floor((countDown % 3600)/60)} : {countDown % 60}</h4> : ""}
-                            </div>
-                            <div >
-                                {breakCountDown ? <h4>Time until next break: {Math.floor(breakCountDown/60)} : {breakCountDown % 60}</h4> : ""}
-                            </div>
-                            <div>
-                                {breakTimer ? <h4>Time left of break: {Math.floor(breakTimer/60)} : {breakTimer % 60}</h4> : ""}
-                            </div>
-                        </div>
-                        <div className='work-plans center d-flex justify-content-center'>
-                            <div className="container pt-3 shadow rounded position-relative get-started" style={{maxWidth: "25%", textAlign: "center"}}>
-                                <h2>Get started on a task</h2>
-                                <p>Getting started is one of the hardest things. Set a timer for just to ten minutes and get one going.</p>
-                                
-                                <button onClick={handleStartingSubmit} className='btn w-50' style={{backgroundColor: theme.primColor, color: theme.primText}}>Start</button>
-                            </div>
-                            <div className="container text-center pt-3 shadow rounded position-relative work-session" style={{ maxWidth: "25%", textAlign: "center"}}>
-                                <h2>Session of work</h2>
-                                <p>Set a timer for an hour, with regular breaks in the middle.</p>
-                                <button onClick={handleSessionSubmit} className='btn w-50' style={{backgroundColor: theme.primColor, color: theme.primText}}>Start</button>
-                            </div>
-                            <div className="container text-center pt-3 shadow rounded position-relative deadline" style={{maxWidth: "25%", textAlign: "center"}}>
-                                <h2>Work to a deadline</h2>
-                                <p>Got a deadline to work to? Start a count down, and get reminders to take breaks along the way</p>
-                                <form onSubmit={handleDeadlineSubmit}>
-                                    <label htmlFor='deadline'>Set end time: </label>
-                                    <input type='time' id='deadline' onChange={(e) => setDeadline(e.target.value)} style={{margin: "5px", padding: "0 3px"}}/>
-                                    {(deadline < time && deadline != "00:00") ? <p>Please enter a time later than the current</p> : ""}
-                                    <button type='submit' className='btn w-50' style={{backgroundColor: theme.primColor, color: theme.primText}}>Start</button>
-                                </form>
-                            </div>
-                        </div>
-                        { taskId ? <h3>Working on: {taskId.task_name}</h3> : ""}
                         <button onClick={() => setRender('categories')} className='btn w-50' style={{ backgroundColor: theme.primColor, color: theme.primText, margin: "30px"}}>Choose a task to work on</button>
                         <RenderPopup />
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
     )
 }
 
