@@ -28,12 +28,13 @@ useEffect(() => {
       <h3 className="fw-semibold"><span className="font-monospace">Welcome to </span>  F O C A L I S E</h3>
       <p className="my-5 font-monospace">Your one-stop spot for productivity online<br/>It’s currently:</p>
       <h2 className='timeDisplay my-5 font-monospace' data-testid="timeDisplay">{date.toLocaleTimeString()}</h2>
-      <p className="fw-light font-monospace">Find out more about Focalise</p>
+      {/* added 250 margin here to fudge for my screen, can remove */}
+      <p style={{marginTop: "250px"}} className="fw-light font-monospace">Find out more</p>
       <div className="arrow mt-5">
         <a className="fa fa-arrow-down fa-2x" style={{color: theme.primText}} href="#more-info" onClick={handleClickArrow}></a>
       </div>
       {showMoreInfo && (
-        <section id="more-info" style={{ height: '100vh' }}>
+        <section id="more-info" style={{ height: '70vh' }}>
           <div className="card-row">
             <div className="card border-1" style={{backgroundColor: theme.primColor, color: theme.primText, borderColor: theme.secColor}}>
               <h2>Sensory</h2>
