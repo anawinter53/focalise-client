@@ -7,7 +7,7 @@ export default function TaskChoice({tasks, setRender, setTaskId}) {
     const handleTask = (e) => {
         e.preventDefault()
         const task_id = e.target.parentNode.id
-        const task = tasks.find(t => t.id = task_id)
+        const task = tasks.find(t => t.id == task_id)
         setTaskId(task)
         setRender('')
     }
