@@ -60,4 +60,6 @@ Using Figma we were able to plan out the design for our website before coding it
 ### Home page:
 
 
+
+
 ### Login/Sign Up page:
